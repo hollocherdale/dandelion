@@ -1,16 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Dandelion</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <title><%= full_title(yield(:title)) %></title>
+  <%= favicon_link_tag 'fav_icon.jpg' %>
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.4.2/pure-min.css">
+  <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic|Montserrat' rel='stylesheet' type='text/css'>
+  <%= stylesheet_link_tag "application", media: "all" %>
+  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
 </head>
+
 <body>
+  <div class="container">
+    <div class="pure-g-r">
+      <div class="pure-u-1">
+        <%= render 'layouts/header' %>
+      </div>
 
-<%= yield %>
+      <!-- flash alerts -->
+      <div class="pure-u-1">
+          <% flash.each do |key, value| %>
+            <div class="alert alert-<%= key %>"><%= value %></div>
+          <% end %>
+      </div>
 
+    <!-- page content -->
+    <div class="pure-g-r">
+      <%= yield %>
+    </div>
+
+    <div class="pure-u-1">
+      <%= render 'layouts/footer' %>
+    </div>
+  </div>
 </body>
 </html>
