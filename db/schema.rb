@@ -14,10 +14,15 @@
 ActiveRecord::Schema.define(version: 20140502202815) do
 
   create_table "adventures", force: true do |t|
+    t.text     "story"
+    t.text     "choice"
+    t.string   "ancestry"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "ancestry"
   end
+
+  add_index "adventures", ["ancestry"], name: "index_adventures_on_ancestry"
 
   create_table "posts", force: true do |t|
     t.datetime "created_at"

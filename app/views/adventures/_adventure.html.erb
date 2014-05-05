@@ -1,0 +1,13 @@
+<div class="adventure">
+	<div class="created_at"><%= adventure.created_at.strftime("%B %d, %Y") %></div>
+	<p>
+		<div class="choice">
+			Choosing "<%= adventure.choice %>
+		</div>
+		<div class="story">
+			leads to "<%= adventure.story %>"
+		</div>
+	</p>
+	<%= link_to "Add a path", new_adventure_path(:parent_id => adventure) %> |
+	<%= link_to 'Destroy', adventure, method: :delete, data: { confirm: 'Are you sure?' }  %>
+</div>
