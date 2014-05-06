@@ -1,0 +1,6 @@
+<%= nested_adventures @adventure.subtree.arrange(:order => :created_at) %>
+<% if @adventure.story.blank? %>
+	This adventure needs the next story!
+<% else %>
+	This adventure needs more paths!
+<% end %>

@@ -1,1 +1,4 @@
-<%= nested_adventures @adventure.subtree.arrange(:order => :created_at) %>
+<% if false %>
+	<%= nested_adventures @adventures.arrange(:order => :created_at) %>
+<% end %>
+<%= render 'adventure_display' %>

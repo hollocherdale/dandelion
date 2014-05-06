@@ -1,5 +1,9 @@
 class AdventuresController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, except: [:home, :show, :about]
+
+  def home
+    @adventure = Adventure.find(1)
+  end
 
   def index
   	@adventures = Adventure.scoped
