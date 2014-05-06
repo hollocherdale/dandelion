@@ -7,8 +7,14 @@
 #   Mayor.create(name: 'Emanuel', city: cities.1)
 
 admin = User.create!(
-	email: 'example@google.com',
-	password: 'asdfasdf'
+	email: 'admin@google.com',
+	password: 'asdfasdf',
+	admin: true
+)
+
+user = User.create!(
+	email: 'user@google.com',
+	password: 'asdfasdf',
 )
 
 one_root_story = Adventure.create!(
