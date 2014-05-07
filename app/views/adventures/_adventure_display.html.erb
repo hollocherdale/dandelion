@@ -1,12 +1,6 @@
 <%= @adventure.story %><br />
 
-<% if @adventure.has_children? %>
-	<% @adventure.children.each do |child| %>
-	  <div class="choice"><%= child.choice %></div>
-	  <%= link_to 'Choose this path', child %>
-	<% end %>
-<% elsif @adventure.story.blank? %>
-	<%= link_to 'Help add the next story', post_path(@adventure.parent) %>
-<% else %>
-	<%= link_to 'Help add the next path', post_path(@adventure) %>
+<% @adventure.children.each do |child| %>
+	<div class="choice"><%= child.choice %></div>
+	<%= link_to 'Choose this path', child %>
 <% end %>

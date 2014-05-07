@@ -1,4 +1,15 @@
 <% if false %>
 	<%= nested_adventures @adventures.arrange(:order => :created_at) %>
 <% end %>
+
 <%= render 'adventure_display' %>
+
+<% if @adventure.is_childless? %>
+  <%= render 'layouts/choice_submissions' %>
+  <%= render 'layouts/add_choice' %>
+  <%= render 'layouts/story_submissions' %>
+  <%= render 'layouts/add_story' %>
+<% else %>
+  <p>There are no adventures at this time, sorry.</p>
+<% end %>
+

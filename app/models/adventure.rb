@@ -1,6 +1,6 @@
 class Adventure < ActiveRecord::Base
 	has_ancestry
-	has_many :posts
 	belongs_to :user
+	has_many :posts
 	validates :user_id, presence: true
 end

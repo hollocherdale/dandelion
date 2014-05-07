@@ -1,4 +1,11 @@
 <h1>Welcome to Dandelion Adventure Quest</h1>
 
-<%= render 'adventure_display' %>
-
+<% @adventures.each do |adventure| %>
+	<% if adventure.is_root? %>
+		<%= adventure.story %><br /><br />
+		<% adventure.children.each do |child| %>
+			<%= child.choice %>
+			<%= link_to 'Choose this path', child %><br />
+		<% end %>
+	<% end %>
+<% end %>

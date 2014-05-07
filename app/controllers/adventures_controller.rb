@@ -2,7 +2,8 @@ class AdventuresController < ApplicationController
   before_filter :authenticate_user!, except: [:home, :show, :about]
 
   def home
-    @adventure = Adventure.find(1)
+    @post = Post.new
+    @adventures = Adventure.all
   end
 
   def index
@@ -14,6 +15,7 @@ class AdventuresController < ApplicationController
   end
 
   def show
+    @post = Post.new
     @adventure = Adventure.find(params[:id])
   end
 
