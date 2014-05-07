@@ -1,0 +1,7 @@
+<% unless @post.choice.blank? %>
+	<%= @post.choice.each do |choice| %>
+		<div class="submission">
+			<%= choice %>
+		</div>
+	<% end %>
+<% end %>

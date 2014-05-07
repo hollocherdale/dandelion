@@ -1,0 +1,9 @@
+<%= form_for(@post) do |f| %>
+	<%= f.hidden_field :user_id %>
+	<%= f.hidden_field :adventure_id %>
+
+	<%= f.label :choice %>
+	<%= f.text_area :choice %>
+
+	<%= f.submit "Submit this choice" %>
+<% end %>

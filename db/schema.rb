@@ -25,6 +25,12 @@ ActiveRecord::Schema.define(version: 20140506214213) do
   add_index "adventures", ["ancestry"], name: "index_adventures_on_ancestry"
 
   create_table "posts", force: true do |t|
+    t.text     "story"
+    t.text     "choice"
+    t.string   "ancestry"
+    t.integer  "user_id"
+    t.integer  "adventure_id"
+    t.boolean  "selected",     default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,18 +1,6 @@
-<div class="pure-g-r">
-  <div class="pure-u-1-3">
-    <div class="logo">
-      <% if false %>
-        <%= link_to image_tag('dandelion_logo.jpg', alt: 'dandelion_logo'), root_path %>
-      <% end %>
-    </div>
-  </div>
-  <div class="pure-u-1-3">
-  </div>
-  <div class="pure-u-1-3">
-    <div class="pure-g-r header-right">
-      <div class="pure-u-1">
-      	<div><%= render 'layouts/header_links' %></div>
-      </div>
-    </div>
-  </div>
+<div class="logo">
+  <% if false %>
+    <%= link_to image_tag('dandelion_logo.jpg', alt: 'dandelion_logo'), root_path %>
+  <% end %>
 </div>
+<%= render 'layouts/header_links' %>
