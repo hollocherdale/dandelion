@@ -9,7 +9,6 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
-gem 'acts_as_votable', '~> 0.9.0'
 gem 'devise'
 gem 'ancestry'
 

@@ -1,8 +1,0 @@
-<% @adventure.posts.each do |post| %>
-	<% unless post.story.blank? %>
-		<%= post.story %>
-		<%if current_user.admin? %>
-			<%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }  %>
-		<% end %>
-	<% end %>
-<% end %>
