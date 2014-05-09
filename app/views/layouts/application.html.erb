@@ -21,13 +21,15 @@
     <%= csrf_meta_tags %>
     <%= render 'layouts/header' %>
   </head>
-
   <body>
-
-    <%= yield %>
-
-    <%= render 'layouts/footer' %>
-
-    <%= javascript_include_tag "application" %>
+    <div class="row">
+      <%= yield %>
+      <%= javascript_include_tag "application" %>
+    </div>
+    <div class="row">
+      <div class="small-3 small-centered columns">
+        <%= render 'layouts/footer' %>
+      </div>
+    </div>
   </body>
 </html>

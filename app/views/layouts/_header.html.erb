@@ -1,6 +1,16 @@
-<div class="logo">
-  <% if false %>
-    <%= link_to image_tag('dandelion_logo.jpg', alt: 'dandelion_logo'), root_path %>
-  <% end %>
+<div class="row">
+  <div class="small-2 columns">
+    <% if false %>
+      <%= link_to image_tag('dandelion_logo.jpg', alt: 'dandelion_logo'), root_path %>
+    <% end %>
+  </div>
+  <div class="large-8 columns"></div>
+  <div class="small-2 columns">
+    <% if user_signed_in? %>
+      <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+    <% else %>
+      <%= link_to "Sign in", new_user_session_path %> |
+      <%= link_to "Sign Up", new_user_registration_path %>
+    <% end %>
+  </div>
 </div>
-<%= render 'layouts/header_links' %>
