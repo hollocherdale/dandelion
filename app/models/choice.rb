@@ -1,0 +1,2 @@
+class Choice < Post
+end

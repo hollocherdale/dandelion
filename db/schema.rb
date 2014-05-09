@@ -25,8 +25,8 @@ ActiveRecord::Schema.define(version: 20140508190926) do
   add_index "adventures", ["ancestry"], name: "index_adventures_on_ancestry"
 
   create_table "posts", force: true do |t|
-    t.text     "story"
-    t.text     "choice"
+    t.text     "content"
+    t.string   "type"
     t.integer  "vote_count"
     t.integer  "user_id"
     t.integer  "adventure_id"

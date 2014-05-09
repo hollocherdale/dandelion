@@ -1,37 +1,40 @@
 <h4>Choice Submissions</h4>
-<ul class="small-block-grid-4">
-  <% @adventure.posts.each do |post| %>
-  <li>
-    <% unless post.choice.blank? %>
+<div class="row">
+  <% @adventure.posts.choices.each do |post| %>
+  <% unless post.blank? %>
+    <div class="large-3 columns">
       <div class="submission">
-        <%= post.choice %>
-      </div>
-      <div class="row">
-        <div class="small-4 columns">
-          <%= pluralize(post.vote_count, "vote") %>
-        </div>
-        <div class="small-4 columns">
-          <%= form_for post.votes.new do |f| %>
-            <%= f.hidden_field :post_id %>
-            <%= f.hidden_field :user_id, :value => current_user.id %>
-            <%= f.submit "Upvote"%>
-          <% end %>
-        </div>
-        <div class="small-4 columns">
-          <%if current_user.admin? || current_user.id == post.user_id %>
-            <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }  %>
-          <% end %>
+        <%= post %>
+        <hr class="divider">
+<!-- submission info:   votes, vote_up button, delete  -->
+        <div class="row">
+          <div class="small-3 columns">
+            <%= form_for post.votes.new do |f| %>
+              <%= f.hidden_field :post_id %>
+              <%= f.hidden_field :user_id, :value => current_user.id %>
+              <%= f.submit "UP"%>
+            <% end %>
+          </div>
+          <div class="small-4 columns">
+            <%= pluralize(post.vote_count, "UP") %>
+          </div>
+          <div class="small-5 columns">
+           <%if current_user.admin? || current_user.id == post.user_id %>
+              <%= button_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }  %>
+            <% end %>
+          </div>
         </div>
       </div>
     <% end %>
-  </li>
+  </div>
   <% end %>
-</ul>
+</div>
 
 <%= form_for @post do |f| %>
+  <%= f.hidden_field :type, :value => :choice %>
   <%= f.hidden_field :user_id %><br />
   <%= f.hidden_field :adventure_id, :value => @adventure[:id] %><br />
-  <%= f.label :choice %><br />
-  <%= f.text_area :choice %><br />
+  <%= f.label :content %><br />
+  <%= f.text_area :content %><br />
   <%= f.submit "Submit this choice" %>
 <% end %>

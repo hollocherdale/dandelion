@@ -3,6 +3,8 @@ Dandelion::Application.routes.draw do
 
   resources :adventures#, :only => [:create, :show, :new, :index, :update]
   resources :posts#, :only => [:edit, :update, :show]
+  resources :choices
+  resources :stories
   resources :votes#, :only => [:create]
 
   root 'adventures#home'

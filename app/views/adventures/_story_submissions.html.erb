@@ -1,23 +1,40 @@
-  <h4>Story Submissions</h4>
+<h4>Story Submissions</h4>
+<div class="row">
   <% @adventure.posts.each do |post| %>
-    <% unless post.story.blank? %>
-      <%= post.story %>
-      <%= pluralize(post.vote_count, "vote") %>
-      <%= form_for post.votes.new do |f| %>
-        <%= f.hidden_field :post_id %>
-        <%= f.hidden_field :user_id, :value => current_user.id %>
-        <%= f.submit "up"%>
-      <% end %>
-      <%if current_user.admin? %>
-        <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }  %>
-      <% end %>
+  <% unless post.blank? %>
+    <div class="large-3 columns">
+      <div class="submission">
+        <%= post %>
+        <hr class="divider">
+<!-- submission info:   votes, vote_up button, delete  -->
+        <div class="row">
+          <div class="small-3 columns">
+            <%= form_for post.votes.new do |f| %>
+              <%= f.hidden_field :post_id %>
+              <%= f.hidden_field :user_id, :value => current_user.id %>
+              <%= f.submit "UP"%>
+            <% end %>
+          </div>
+          <div class="small-4 columns">
+            <%= pluralize(post.vote_count, "UP") %>
+          </div>
+          <div class="small-5 columns">
+           <%if current_user.admin? || current_user.id == post.user_id %>
+              <%= button_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }  %>
+            <% end %>
+          </div>
+        </div>
+      </div>
     <% end %>
+  </div>
   <% end %>
+</div>
 
-  <%= form_for @post do |f| %>
-    <%= f.hidden_field :user_id %><br />
-    <%= f.hidden_field :adventure_id, :value => @adventure[:id] %><br />
-    <%= f.label :story %><br />
-    <%= f.text_area :story %><br />
-    <%= f.submit "Submit this story" %>
-  <% end %>
+<%= form_for @post do |f| %>
+  <%= f.hidden_field :type, :value => "Story" %>
+  <%= f.hidden_field :user_id %><br />
+  <%= f.hidden_field :adventure_id, :value => @adventure[:id] %><br />
+  <%= f.label :content %><br />
+  <%= f.text_area :content %><br />
+  <%= f.submit "Submit this story" %>
+<% end %>

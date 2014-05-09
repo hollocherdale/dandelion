@@ -1,8 +1,8 @@
 class CreatePosts < ActiveRecord::Migration
   def change
     create_table :posts do |t|
-      t.text :story
-      t.text :choice
+      t.text :content
+      t.string :type
       t.integer :vote_count
       t.integer :user_id
       t.integer :adventure_id
