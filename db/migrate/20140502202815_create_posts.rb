@@ -3,6 +3,7 @@ class CreatePosts < ActiveRecord::Migration
     create_table :posts do |t|
       t.text :story
       t.text :choice
+      t.integer :vote_count
       t.integer :user_id
       t.integer :adventure_id
       t.boolean :selected, :default => false

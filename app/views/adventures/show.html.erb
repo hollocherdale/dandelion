@@ -2,6 +2,15 @@
 	<%= nested_adventures @adventures.arrange(:order => :created_at) %>
 <% end %>
 
-<%= render 'adventure_display' %>
+<%= @adventure.story %><br />
 
-<%= render 'layouts/adventure_submissions' %>
+<% @adventure.children.each do |child| %>
+	<div>
+		<%= child.choice %> | 
+		<%= link_to 'Choose this path', child %>
+	</div>
+<% end %>
+
+<% if @adventure.childless? %>
+  <%= render 'layouts/adventure_submissions' %>
+<% end %>

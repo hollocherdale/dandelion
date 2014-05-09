@@ -15,10 +15,9 @@ class AdventuresController < ApplicationController
   end
 
   def show
+    @vote = Vote.new
     @post = Post.new
     @adventure = Adventure.find(params[:id])
-    @choices = @adventure.posts.select(:choice)
-    @stories = @adventure.posts.select(:story)
   end
 
   def create

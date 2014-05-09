@@ -1,6 +1,0 @@
-<%= @adventure.story %><br />
-
-<% @adventure.children.each do |child| %>
-	<div class="choice"><%= child.choice %></div>
-	<%= link_to 'Choose this path', child %>
-<% end %>

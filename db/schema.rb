@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20140508190926) do
   create_table "posts", force: true do |t|
     t.text     "story"
     t.text     "choice"
+    t.integer  "vote_count"
     t.integer  "user_id"
     t.integer  "adventure_id"
     t.boolean  "selected",     default: false
