@@ -1,10 +1,9 @@
-<h4>Story Submissions</h4>
+<h4>Choice Submissions</h4>
 <div class="row">
-  <% @adventure.posts.each do |post| %>
-  <% unless post.blank? %>
+  <% @adventure.posts.where(type: "Story").each do |post| %>
     <div class="large-3 columns">
       <div class="submission">
-        <%= post %>
+        <%= post.content %>
         <hr class="divider">
 <!-- submission info:   votes, vote_up button, delete  -->
         <div class="row">
@@ -25,16 +24,15 @@
           </div>
         </div>
       </div>
-    <% end %>
-  </div>
+    </div>
   <% end %>
 </div>
 
 <%= form_for @post do |f| %>
   <%= f.hidden_field :type, :value => "Story" %>
-  <%= f.hidden_field :user_id %><br />
+  <%= f.hidden_field :user_id, :value => current_user.id %><br />
   <%= f.hidden_field :adventure_id, :value => @adventure[:id] %><br />
   <%= f.label :content %><br />
   <%= f.text_area :content %><br />
-  <%= f.submit "Submit this story" %>
+  <%= f.submit "Submit this choice" %>
 <% end %>

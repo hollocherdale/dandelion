@@ -1,12 +1,6 @@
 class PostsController < ApplicationController
   before_filter :authenticate_user!, except: [:show]
 
-  # def show
-  # 	@post = Post.new
-  # 	@no_choice = false
-  #   @adventure = Adventure.find(params[:id])
-  # end
-
   def create
   	@post = current_user.posts.build(post_params)
   	if @post.save
@@ -36,8 +30,16 @@ class PostsController < ApplicationController
 
   private
 
+    def set_type
+      @type = type
+    end
+
+    def type
+      params[:type] || "Post"
+    end
+
   	def post_params
-  	  params.require(:post).permit(:story, :choice, :adventure_id, :user_id)
+  	  params.require(type.underscore.to_sym).permit(:content, :adventure_id, :user_id, :type)
   	end
 
 end
