@@ -1,24 +1,28 @@
-<%= @adventure.story %>
+<div class="row">
+  <div class="small-9 small-centered columns story">
+    <p class="adventure"><%= @adventure.story %></p>
+  </div>
+</div>
 
-<ul class="small-block-grid-2">  
+<div class="row">  
   <% @adventure.children.each do |child| %>
-  <li> 
-    <div class="row">
-      <div class="small-12 columns"> 
-        <%= child.choice %>
-      </div>
+  <div class="small-5 columns choice"> 
+    <div class="row"> 
+      <p class="adventure"><%= child.choice %></p>
     </div>
-    <%= link_to 'Choose this path', child %>
-  </li>
+    <div class="small-6 small-centered columns">
+      <%= link_to 'Choose this path', child, :class => "button" %>
+    </div>
+  </div>
   <% end %>
-</ul>
+</div>
 <div class="row">
   <% if @adventure.childless? %>
-  <!-- Change this to a flash message -->
-    <p>There are no more paths to this adventure, time to add your voice.</p>
     <%= render 'choice_submissions' %>
+    <%= render 'choice_form' %>
     <% if true %>
       <%= render 'story_submissions' %>
+      <%= render 'story_form' %>
     <% end %>
   <% end %>
 </div>

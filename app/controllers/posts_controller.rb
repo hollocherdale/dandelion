@@ -1,6 +1,11 @@
 class PostsController < ApplicationController
   before_filter :authenticate_user!, except: [:show]
 
+  def show
+    @post = Post.find(params[:id])
+    @adventure = Adventure.find(@post.adventure_id)
+  end
+
   def create
   	@post = current_user.posts.build(post_params)
   	if @post.save

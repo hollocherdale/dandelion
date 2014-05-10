@@ -23,6 +23,9 @@
   </head>
   <body>
     <div class="row">
+      <% flash.each do |name, msg| -%>
+         <%= content_tag :div, msg, class: name %>
+      <% end -%>
       <%= yield %>
       <%= javascript_include_tag "application" %>
     </div>

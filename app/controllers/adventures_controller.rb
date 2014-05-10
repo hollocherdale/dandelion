@@ -2,8 +2,9 @@ class AdventuresController < ApplicationController
   before_filter :authenticate_user!, except: [:home, :show, :about]
 
   def home
-    @post = Post.new
     @adventures = Adventure.all
+    @top_stories = Post.where(type: "Story").order(:vote_count).first(2)
+    @top_choices = Post.where(type: "Choice").order(:vote_count).first(2)
   end
 
   def index
@@ -18,6 +19,9 @@ class AdventuresController < ApplicationController
     @vote = Vote.new
     @post = Post.new
     @adventure = Adventure.find(params[:id])
+    if @adventure.childless?
+      flash[:notice] = "There are no more paths to this adventure, time to add your voice"
+    end
   end
 
   def create

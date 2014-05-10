@@ -9,3 +9,22 @@
 		<% end %>
 	<% end %>
 <% end %>
+
+<div class="row">
+	<div class="small-6 columns">
+		<h3>Top Stories</h3>
+		<% @top_stories.each do |post| %>
+			<div class="submission">
+				<%= post.content %>
+			</div>
+		<% end %>
+	</div>
+	<div class="small-6 columns">
+		<h3>Top Choices</h3>
+		<% @top_choices.each do |post| %>
+			<div class="submission">
+				<%= post.content %>
+			</div>
+		<% end %>
+	</div>
+</div>

@@ -1,38 +1,29 @@
 <h4>Choice Submissions</h4>
 <div class="row">
   <% @adventure.posts.where(type: "Choice").each do |post| %>
-    <div class="large-3 columns">
+    <div class="large-6 columns">
       <div class="submission">
         <%= post.content %>
         <hr class="divider">
-<!-- submission info:   votes, vote_up button, delete  -->
-        <div class="row">
-          <div class="small-3 columns">
+        <!-- submission info:   votes, vote_up button, delete  -->
+        <ul class="inline-list">
+          <li>
             <%= form_for post.votes.new do |f| %>
               <%= f.hidden_field :post_id %>
               <%= f.hidden_field :user_id, :value => current_user.id %>
-              <%= f.submit "UP"%>
+              <%= f.submit "Upvote", :class => "button [tiny small large]"%>
             <% end %>
-          </div>
-          <div class="small-4 columns">
-            <%= pluralize(post.vote_count, "UP") %>
-          </div>
-          <div class="small-5 columns">
+          </li>
+          <li>
+            <%= post.vote_count %>
+          </li>
+          <li>
            <%if current_user.admin? || current_user.id == post.user_id %>
-              <%= button_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }  %>
+              <%= button_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, :class => "button [tiny small large]"  %>
             <% end %>
-          </div>
-        </div>
+          </li>
+        </ul>
       </div>
     </div>
   <% end %>
 </div>
-
-<%= form_for @post do |f| %>
-  <%= f.hidden_field :type, :value => "Choice" %>
-  <%= f.hidden_field :user_id, :value => current_user.id %><br />
-  <%= f.hidden_field :adventure_id, :value => @adventure[:id] %><br />
-  <%= f.label :content %><br />
-  <%= f.text_area :content %><br />
-  <%= f.submit "Submit this choice" %>
-<% end %>
