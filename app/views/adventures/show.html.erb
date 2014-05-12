@@ -17,7 +17,7 @@
   <% end %>
 </div>
 <div class="row">
-  <% if @adventure.pending? %>
+  <% if @adventure.published_open? %>
   	<%= link_to 'Continue the adventure!', new_adventure_path(:id => @adventure.id), :class => "button" %>
   <% end %>
 </div>

@@ -15,7 +15,8 @@
 		<h3>Top Stories</h3>
 		<% @top_adventures.each do |adventure| %>
 			<div class="submission">
-				<%= adventure.content %>
+				<%= adventure.choice %>
+				<%= adventure.story %>
 			</div>
 		<% end %>
 	</div>

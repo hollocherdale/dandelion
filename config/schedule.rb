@@ -19,45 +19,20 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every :monday, :at => '12 am' do
+every :friday, :at => '12 am' do
   runner "Post.all.each do |post| archive"
 end
 
-every :monday, :at => '1 am' do
-  runner "Post.all.archive"
-end
-
-Post.all.each do |post|
-  post.archive
-end
-
-Adventure.where(state: "accepting_choices").each do |adventure|
-  Adventure.create(
-  	choice: adventure.posts.where(type: "Choice").order(:vote_count).first
-  	user_id: adventure.posts.where(type: "Choice").order(:vote_count).first.user_id
-  	)
-  Adventure.create(
-  	choice: adventure.posts.where(type: "Choice").order(:vote_count).second
-  	user_id: adventure.posts.where(type: "Choice").order(:vote_count).second.user_id
-  	)
-  adventure.posts.each do |post|
-  	post.archive
+# We want to act on all the adventures that are published_open, these are the ones that are accepting submissions.
+Adventure.where(state: "published_open").each do |adventure|
+  # We want to initially publish_close all those adventures so that they no longer accept submissions. We do this first to clear out all the published_open adventures, so they don't get 'contamincated' with the new adventures that will be published_open.
+  adventure.publish_close
+  # Take the top 2 voted children and publish_open those so that they will now accept submissions. How do I handle where there will only be one choice upvoted?
+  adventure.children.order(:vote_count).first(2).each do |top_voted|
+    top_voted.publish_open
+  end
+  # Now take all the remaining children which are still pending and archive them.
+  adventure.children.where(state: "pending").each do |pending_adventure|
+    pending_adventure.archive
   end
 end
-
-	
-Adventure.where(state: "accepting_stories").each do |adventure|
-  Adventure.create(
-  	story: adventure.posts.where(type: "Story").order(:vote_count).first
-  	user_id: adventure.posts.where(type: "story").order(:vote_count).first.user_id
-  	)
-  Adventure.create(
-  	choice: adventure.posts.where(type: "Choice").order(:vote_count).second
-  	user_id: adventure.posts.where(type: "Choice").order(:vote_count).second.user_id
-  	)
-  adventure.posts.each do |post|
-  	post.archive
-  end
-end
-
-	
