@@ -5,6 +5,7 @@ class CreateAdventures < ActiveRecord::Migration
       t.text :story
       t.text :choice
       t.string :ancestry
+      t.string :state
       t.integer :user_id
 
       t.timestamps

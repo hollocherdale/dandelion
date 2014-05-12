@@ -18,11 +18,16 @@
 </div>
 <div class="row">
   <% if @adventure.childless? %>
-    <%= render 'choice_submissions' %>
-    <%= render 'choice_form' %>
-    <% if true %>
-      <%= render 'story_submissions' %>
-      <%= render 'story_form' %>
-    <% end %>
+    <% if @adventure.accepting_choices? %>
+	  <%= render 'choice_submissions' %>
+	  <% if user_signed_in? %>
+	    <%= render 'choice_form' %>
+	  <% end %>
+	<% else %>
+	  <%= render 'story_submissions' %>
+	    <% if user_signed_in? %>
+	      <%= render 'story_form' %>
+	    <% end %>
+	<% end %>
   <% end %>
 </div>

@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20140508190926) do
     t.text     "story"
     t.text     "choice"
     t.string   "ancestry"
+    t.string   "state"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -27,6 +28,7 @@ ActiveRecord::Schema.define(version: 20140508190926) do
   create_table "posts", force: true do |t|
     t.text     "content"
     t.string   "type"
+    t.string   "state"
     t.integer  "vote_count"
     t.integer  "user_id"
     t.integer  "adventure_id"

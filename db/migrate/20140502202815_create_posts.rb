@@ -3,6 +3,7 @@ class CreatePosts < ActiveRecord::Migration
     create_table :posts do |t|
       t.text :content
       t.string :type
+      t.string :state
       t.integer :vote_count
       t.integer :user_id
       t.integer :adventure_id

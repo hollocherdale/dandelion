@@ -19,9 +19,6 @@ class AdventuresController < ApplicationController
     @vote = Vote.new
     @post = Post.new
     @adventure = Adventure.find(params[:id])
-    if @adventure.childless?
-      flash[:notice] = "There are no more paths to this adventure, time to add your voice"
-    end
   end
 
   def create

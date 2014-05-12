@@ -1,3 +1,5 @@
+require 'state_machine'
+
 class Post < ActiveRecord::Base
   belongs_to :user
   belongs_to :adventure
@@ -6,10 +8,13 @@ class Post < ActiveRecord::Base
   validates :content, presence: true
   validates :type, presence: true
 
-  def top_stories
-  	Post.find_in_batches do |post|
-  		post.where(type: "Story").order(:vote_count).first(2)
-  	end
+  state_machine :initial => :voteable do
+    event :archive do
+      transition :voteable => :archived
+    end
+    
+    event :publish do
+      transition :archived => :published 
+    end
   end
-
 end
