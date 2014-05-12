@@ -1,5 +1,3 @@
-<%= render @adventure.parent if @adventure.parent %>
-
 <div class="form">
   <%= form_for(@adventure) do |f| %>
     <% if @adventure.errors.any? %>
@@ -12,13 +10,44 @@
         </ul>
       </div>
     <% end %>
-    <%= f.hidden_field :parent_id %>
+    <%= f.hidden_field :parent_id, :value => params[:id] %>
     <%= f.label :choice %><br>
     <%= f.text_area :choice %>
     <%= f.label :story %><br>
     <%= f.text_area :story %>
     <div class="actions">
       <%= f.submit "Post"%>
+    </div>
+  <% end %>
+</div>
+
+<h4>Adventure Submissions</h4>
+<div class="row">
+  <% @submissions.each do |adventure| %>
+    <div class="large-6 columns">
+      <div class="submission">
+        <p><em>This path: </em><%= adventure.choice %></p>
+        <p><em>Leads to this story: </em><%= adventure.story %></p>
+        <hr class="divider">
+        <!-- submission info:   votes, vote_up button, delete  -->
+        <ul class="inline-list">
+          <li>
+            <%= form_for adventure.votes.new do |f| %>
+              <%= f.hidden_field :adventure_id %>
+              <%= f.hidden_field :user_id, :value => current_user.id %>
+              <%= f.submit "Upvote", :class => "button [tiny small large]"%>
+            <% end %>
+          </li>
+          <li>
+            <%= adventure.vote_count %>
+          </li>
+          <li>
+           <%if current_user.admin? || current_user.id == adveture.user_id %>
+              <%= button_to 'Destroy', adventure, method: :delete, data: { confirm: 'Are you sure?' }, :class => "button [tiny small large]"  %>
+            <% end %>
+          </li>
+        </ul>
+      </div>
     </div>
   <% end %>
 </div>

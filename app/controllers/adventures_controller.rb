@@ -3,8 +3,7 @@ class AdventuresController < ApplicationController
 
   def home
     @adventures = Adventure.all
-    @top_stories = Post.where(type: "Story").order(:vote_count).first(2)
-    @top_choices = Post.where(type: "Choice").order(:vote_count).first(2)
+    @top_adventures = Adventure.where(state: "Pending").order(:vote_count).first(2)
   end
 
   def index
@@ -12,12 +11,12 @@ class AdventuresController < ApplicationController
   end
 
   def new
-  	@adventure = Adventure.new(:parent_id => params[:parent_id])
+    @vote = Vote.new
+  	@adventure = Adventure.new
+    @submissions = Adventure.find(params[:id]).children
   end
 
   def show
-    @vote = Vote.new
-    @post = Post.new
     @adventure = Adventure.find(params[:id])
   end
 
@@ -26,17 +25,17 @@ class AdventuresController < ApplicationController
     @adventure = current_user.adventures.build(adventure_params)
     if @adventure.save
       flash[:success] = "Adventure created!"
-      redirect_to adventures_path
+      redirect_to :back
     else
       flash[:error] = "There was an error"
-      redirect_to adventures_path
+      redirect_to :back
     end
   end
 
   def destroy
   	@adventure = Adventure.find(params[:id])
   	@adventure.destroy
-  	redirect_to adventures_path
+  	redirect_to :back
   end
 
   private

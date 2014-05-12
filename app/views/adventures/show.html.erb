@@ -17,17 +17,7 @@
   <% end %>
 </div>
 <div class="row">
-  <% if @adventure.childless? %>
-    <% if @adventure.accepting_choices? %>
-	  <%= render 'choice_submissions' %>
-	  <% if user_signed_in? %>
-	    <%= render 'choice_form' %>
-	  <% end %>
-	<% else %>
-	  <%= render 'story_submissions' %>
-	    <% if user_signed_in? %>
-	      <%= render 'story_form' %>
-	    <% end %>
-	<% end %>
+  <% if @adventure.pending? %>
+  	<%= link_to 'Continue the adventure!', new_adventure_path(:id => @adventure.id), :class => "button" %>
   <% end %>
 </div>

@@ -16,26 +16,15 @@ ActiveRecord::Schema.define(version: 20140508190926) do
   create_table "adventures", force: true do |t|
     t.text     "story"
     t.text     "choice"
-    t.string   "ancestry"
     t.string   "state"
+    t.string   "ancestry"
+    t.integer  "vote_count"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "adventures", ["ancestry"], name: "index_adventures_on_ancestry"
-
-  create_table "posts", force: true do |t|
-    t.text     "content"
-    t.string   "type"
-    t.string   "state"
-    t.integer  "vote_count"
-    t.integer  "user_id"
-    t.integer  "adventure_id"
-    t.boolean  "selected",     default: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "",    null: false
@@ -58,7 +47,7 @@ ActiveRecord::Schema.define(version: 20140508190926) do
 
   create_table "votes", force: true do |t|
     t.integer  "user_id"
-    t.integer  "post_id"
+    t.integer  "adventure_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

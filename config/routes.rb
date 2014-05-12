@@ -1,11 +1,8 @@
 Dandelion::Application.routes.draw do
   devise_for :users
 
-  resources :adventures#, :only => [:create, :show, :new, :index, :update]
-  resources :posts#, :only => [:edit, :update, :show]
-  resources :choices, controller: 'posts', type: 'Choice'
-  resources :stories, controller: 'posts', type: 'Story'
-  resources :votes#, :only => [:create]
+  resources :adventures
+  resources :votes, :only => [:create]
 
   root 'adventures#home'
 

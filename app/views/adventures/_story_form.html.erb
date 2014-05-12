@@ -1,8 +1,0 @@
-<%= form_for @post do |f| %>
-  <%= f.hidden_field :type, :value => "Story" %>
-  <%= f.hidden_field :user_id, :value => current_user.id %><br />
-  <%= f.hidden_field :adventure_id, :value => @adventure[:id] %><br />
-  <%= f.label :content %><br />
-  <%= f.text_area :content %><br />
-  <%= f.submit "Submit this choice" %>
-<% end %>
