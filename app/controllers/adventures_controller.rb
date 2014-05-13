@@ -1,9 +1,9 @@
 class AdventuresController < ApplicationController
-  before_filter :authenticate_user!, except: [:home, :show, :about]
+  before_filter :authenticate_user!, except: [:home, :show, :about, :new]
 
   def home
     @adventures = Adventure.all
-    @top_adventures = Adventure.where(state: "Pending").order(:vote_count).first(2)
+    @top_adventures = Adventure.where(state: "pending").order(vote_count: :desc).first(2)
   end
 
   def index

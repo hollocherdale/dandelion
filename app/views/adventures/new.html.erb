@@ -1,10 +1,11 @@
+<% if user_signed_in? %>
 <div class="form">
   <%= form_for(@adventure) do |f| %>
     <% if @adventure.errors.any? %>
       <div id="error_explanation">
-        <h2><%= pluralize(@adveture.errors.count, "error") %> prohibited this adveture from being saved:</h2>
+        <h2><%= pluralize(@adventure.errors.count, "error") %> prohibited this adventure from being saved:</h2>
         <ul>
-        <% @adveture.errors.full_messages.each do |msg| %>
+        <% @adventure.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
         <% end %>
         </ul>
@@ -20,6 +21,9 @@
     </div>
   <% end %>
 </div>
+<% else %>
+  <p> please sign in to submit your story </p>
+<% end %>
 
 <h4>Adventure Submissions</h4>
 <div class="row">
@@ -30,23 +34,27 @@
         <p><em>Leads to this story: </em><%= adventure.story %></p>
         <hr class="divider">
         <!-- submission info:   votes, vote_up button, delete  -->
-        <ul class="inline-list">
-          <li>
-            <%= form_for adventure.votes.new do |f| %>
-              <%= f.hidden_field :adventure_id %>
-              <%= f.hidden_field :user_id, :value => current_user.id %>
-              <%= f.submit "Upvote", :class => "button [tiny small large]"%>
-            <% end %>
-          </li>
-          <li>
-            <%= adventure.vote_count %>
-          </li>
-          <li>
-           <%if current_user.admin? || current_user.id == adveture.user_id %>
-              <%= button_to 'Destroy', adventure, method: :delete, data: { confirm: 'Are you sure?' }, :class => "button [tiny small large]"  %>
-            <% end %>
-          </li>
-        </ul>
+        <% if user_signed_in? %>
+          <ul class="inline-list">
+            <li>
+              <%= form_for adventure.votes.new do |f| %>
+                <%= f.hidden_field :adventure_id %>
+                <%= f.hidden_field :user_id, :value => current_user.id %>
+                <%= f.submit "Upvote", :class => "button [tiny small large]"%>
+              <% end %>
+            </li>
+            <li>
+              <%= adventure.vote_count %>
+            </li>
+            <li>
+             <%if current_user.admin? || current_user.id == adventure.user_id %>
+                <%= button_to 'Destroy', adventure, method: :delete, data: { confirm: 'Are you sure?' }, :class => "button [tiny small large]"  %>
+              <% end %>
+            </li>
+          </ul>
+        <% else %>
+          <p>Please sign in to vote.</p>
+        <% end %>
       </div>
     </div>
   <% end %>

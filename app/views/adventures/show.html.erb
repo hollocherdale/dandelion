@@ -4,20 +4,28 @@
   </div>
 </div>
 
-<div class="row">  
-  <% @adventure.children.each do |child| %>
-  <div class="small-5 columns choice"> 
-    <div class="row"> 
-      <p class="adventure"><%= child.choice %></p>
-    </div>
-    <div class="small-6 small-centered columns">
-      <%= link_to 'Choose this path', child, :class => "button" %>
-    </div>
-  </div>
-  <% end %>
-</div>
 <div class="row">
   <% if @adventure.published_open? %>
+    <div class="small-3 small-centered columns">
   	<%= link_to 'Continue the adventure!', new_adventure_path(:id => @adventure.id), :class => "button" %>
+    </div>
+  <% else %>
+    <% @adventure.children.each do |child| %>
+      <% if child.is_only_child? %>
+          <div class="small-6 small-centered columns choice">
+            <p class="adventure"><%= child.choice %></p>
+            <%= link_to 'Follow this path', child, :class => "button" %>
+          </div>
+      <% else %>
+        <div class="small-5 columns choice"> 
+          <div class="row"> 
+            <p class="adventure"><%= child.choice %></p>
+          </div>
+          <div class="small-6 small-centered columns">
+            <%= link_to 'Choose this path', child, :class => "button" %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
   <% end %>
 </div>

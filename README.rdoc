@@ -23,6 +23,10 @@ Things you may want to cover:
 
 * ...
 
+== To Do List
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+* Build a forum for users posting suggestions
+
+* Page caching for all the static pages
+
+* Image caching

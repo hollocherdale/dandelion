@@ -1,13 +1,10 @@
 <h1>Dandelion Adventure Quest</h1>
-<p><strong>Dandelion is in early alpha development stage. Please be careful with all information that you post to this site at this time. You should assume that all information is publicly available.</strong>
+<p><strong>Dandelion is in early alpha <em>development</em> stage. Please be careful with all information that you post to this site at this time; information uploaded to dandelion is not secure.</strong>
 </p>
+<div class="row">
 <% @adventures.each do |adventure| %>
 	<% if adventure.is_root? %>
-		<%= adventure.story %><br /><br />
-		<% adventure.children.each do |child| %>
-			<%= child.choice %>
-			<%= link_to 'Choose this path', child %><br />
-		<% end %>
+		<p class="adventure"><%= link_to adventure.story, adventure, :class => "button" %></p>
 	<% end %>
 <% end %>
 
@@ -16,8 +13,8 @@
 		<h3>Top Stories</h3>
 		<% @top_adventures.each do |adventure| %>
 			<div class="submission">
-				<%= adventure.choice %>
-				<%= adventure.story %>
+				<p><%= adventure.choice %></p>
+				<p><%= adventure.story %></p>
 			</div>
 		<% end %>
 	</div>
