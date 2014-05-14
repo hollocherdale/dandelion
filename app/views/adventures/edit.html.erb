@@ -1,0 +1,4 @@
+<%= form_for @adventure, :html => { :multipart => true } do |f| %>
+  <%= f.file_field :slides %>
+  <%= f.submit "Add image" %>
+<% end %>

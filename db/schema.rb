@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140508190926) do
+ActiveRecord::Schema.define(version: 20140513233913) do
 
   create_table "adventures", force: true do |t|
     t.text     "story"
@@ -22,6 +22,10 @@ ActiveRecord::Schema.define(version: 20140508190926) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "slides_file_name"
+    t.string   "slides_content_type"
+    t.integer  "slides_file_size"
+    t.datetime "slides_updated_at"
   end
 
   add_index "adventures", ["ancestry"], name: "index_adventures_on_ancestry"

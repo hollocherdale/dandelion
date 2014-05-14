@@ -32,6 +32,20 @@ class AdventuresController < ApplicationController
     end
   end
 
+  def edit
+    @adventure = Adventure.find(params[:id])
+  end
+
+  def update
+    @adventure = Adventure.find(params[:id])
+    if @adventure.update_attributes(adventure_params)
+      flash[:success] = "Adventure updated"
+      redirect_to @adventure
+    else
+      render 'edit'
+    end
+  end
+
   def destroy
   	@adventure = Adventure.find(params[:id])
   	@adventure.destroy
@@ -41,6 +55,6 @@ class AdventuresController < ApplicationController
   private
 
     def adventure_params
-      params.require(:adventure).permit(:story, :choice, :parent_id, :user_id)
+      params.require(:adventure).permit(:story, :choice, :parent_id, :user_id, :slides)
     end
 end

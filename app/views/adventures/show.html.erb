@@ -1,5 +1,8 @@
 <div class="row">
   <div class="small-9 small-centered columns story">
+    <% unless @adventure.slides.blank? %>
+      <%= image_tag @adventure.slides.url %>
+    <% end %>
     <p class="adventure"><%= @adventure.story %></p>
   </div>
 </div>

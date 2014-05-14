@@ -12,10 +12,10 @@
       </div>
     <% end %>
     <%= f.hidden_field :parent_id, :value => params[:id] %>
-    <%= f.label :choice %><br>
-    <%= f.text_area :choice %>
+    <%= f.label :path %><br>
+    <%= f.text_area :choice, :placeholder => "What path will lead to your story?" %>
     <%= f.label :story %><br>
-    <%= f.text_area :story %>
+    <%= f.text_area :story, :placeholder => "Your story" %>
     <div class="actions">
       <%= f.submit "Post"%>
     </div>
