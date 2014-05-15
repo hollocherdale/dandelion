@@ -1,22 +1,25 @@
 <% provide(:title, 'Edit adventure') %>
 <div class="row">
   <div class="small-9 small-centered columns story">
-    <% unless @adventure.photo.blank? %>
-      <%= image_tag @adventure.photo.url(:medium) %>
-    <% end %>
     <p class="adventure"><%= @adventure.story %></p>
+    <ul class="small-block-grid-4">
+      <% @adventure.photos.each do |photo| %>
+        <li>
+          <%= image_tag photo.image(:thumb) %>
+          <%if current_user.admin? || current_user.id == @adventure.user_id %>
+             <%= button_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' }, :class => "button [tiny small large]"  %>
+           <% end %>
+        </li>
+      <% end %>
+    </ul>
   </div>
 </div>
-
-<%= form_for(@adventure, :html => { :multipart => true }) do |f| %>
-  <%= f.label(:photo, 'Upload photo') %>
-  <%= f.file_field(:photo) %>
-
-  <% if @adventure.photo? %>
-    <%= f.label(:delete_photo, 'Delete photo') %>
-    <%= f.check_box(:delete_photo, options = {}, checked_value = "1", unchecked_value = "0") %>
+<div class="row">
+  <%if current_user.admin? || current_user.id == @adventure.user_id %>
+    <%= form_for @photo, :html => { :multipart => true } do |f| %>
+    	<%= f.hidden_field :adventure_id, :value => @adventure.id %>
+    	<%= f.file_field :image %>
+    	<%= f.submit "Add photo" %>
+    <% end %>
   <% end %>
-
-  <%= f.submit "Update image" %>
-<% end %>
-
+</div>

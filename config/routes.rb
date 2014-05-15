@@ -2,7 +2,8 @@ Dandelion::Application.routes.draw do
   devise_for :users
 
   resources :adventures
-  resources :votes, :only => [:create]
+  resources :votes, :only => [:create, :destroy]
+  resources :photos, :only => [:create, :destroy]
 
   root 'adventures#home'
 

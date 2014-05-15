@@ -13,7 +13,7 @@ gem 'devise'
 gem 'zurb-foundation'
 gem 'ancestry'
 gem 'state_machine'
-gem "paperclip", "~> 4.1"
+gem 'paperclip', github: 'thoughtbot/paperclip'
 gem 'whenever', :require => false
 
 group :development do

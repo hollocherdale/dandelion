@@ -34,18 +34,7 @@ class AdventuresController < ApplicationController
 
   def edit
     @adventure = Adventure.find(params[:id])
-    @photo_delete
-  end
-
-  def update
-    @adventure = Adventure.find(params[:id])
-    if @adventure.update_attributes(adventure_params)
-      flash[:success] = "Adventure updated"
-      redirect_to @adventure
-    else
-      flash[:error] = "Try that again"
-      render 'edit'
-    end
+    @photo = Photo.new
   end
 
   def destroy
@@ -57,6 +46,6 @@ class AdventuresController < ApplicationController
   private
 
     def adventure_params
-      params.require(:adventure).permit(:story, :choice, :parent_id, :user_id, :photo)
+      params.require(:adventure).permit(:story, :choice, :parent_id, :user_id, :photo, :image)
     end
 end
