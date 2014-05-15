@@ -18,8 +18,8 @@ class Adventure < ActiveRecord::Base
       transition :pending => :published_open 
     end
 
-    event :publish_close do
-      transition :published_open => :published_close
+    event :publish_final do
+      transition :published_open => :published_final
     end
   end
 end

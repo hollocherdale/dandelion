@@ -1,32 +1,24 @@
-== README
+FAQ
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Can I edit my submited stories?
+No, once they have been submitted your only choice is to resubmit. This prevents people from changing their submissions at the last point, or changing it once it has been published
 
-Things you may want to cover:
+What else do you want to add?
+Add dead ends.
+Add single choice nominations.
+Add scheduler to publish.
+Add critical masss publishing.
+Add aws3 storage.
+Add asynchrous file uploading.
+Add about page explaining app.
+Admin access / restrictions
+Create image uploading limit.
+Create saveable links to any path node
+Overide devise redirect to take you to the page you were on.
 
-* Ruby version
+Update seeds to be a better story, and remove user coding.
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-== To Do List
-
-* Build a forum for users posting suggestions
-
-* Page caching for all the static pages
-
-* Image caching
+Add profile page.
+  Display all submissions, all published content.
+  Display saved paths
+Reddit style button for upvoting

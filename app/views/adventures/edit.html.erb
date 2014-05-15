@@ -19,7 +19,7 @@
     <%= form_for @photo, :html => { :multipart => true } do |f| %>
     	<%= f.hidden_field :adventure_id, :value => @adventure.id %>
     	<%= f.file_field :image %>
-    	<%= f.submit "Add photo" %>
+    	<%= f.submit "Add photo", data: { disable_with: 'Uploading...' } %>
     <% end %>
   <% end %>
 </div>

@@ -13,7 +13,13 @@ class AdventuresController < ApplicationController
   def new
     @vote = Vote.new
   	@adventure = Adventure.new
-    @submissions = Adventure.find(params[:id]).children
+    @parent = Adventure.find(params[:id])
+    if @parent.published_open?
+      @submissions = Adventure.find(params[:id]).children
+    else
+      redirect_to root_url
+      flash[:error] = "Sorry, that adventure is already populated."
+    end
   end
 
   def show

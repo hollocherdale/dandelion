@@ -14,16 +14,16 @@
     <% end %>
     <%= f.hidden_field :parent_id, :value => params[:id] %>
     <%= f.label :path %><br>
-    <%= f.text_area :choice, :placeholder => "What path will lead to your story?" %>
+    <%= f.text_area :choice, :placeholder => "What path will lead to your story?", :required => true %>
     <%= f.label :story %><br>
-    <%= f.text_area :story, :placeholder => "Your story" %>
+    <%= f.text_area :story, :placeholder => "Your story", :required => true %>
     <div class="actions">
-      <%= f.submit "Post"%>
+      <%= f.submit "Post", data: { disable_with: 'Posting...' }%>
     </div>
   <% end %>
 </div>
 <% else %>
-  <p> please sign in to submit your story </p>
+  <h4> Please sign in to submit your story and vote.</h4>
 <% end %>
 
 <h4>Adventure Submissions</h4>
@@ -41,7 +41,7 @@
               <%= form_for adventure.votes.new do |f| %>
                 <%= f.hidden_field :adventure_id %>
                 <%= f.hidden_field :user_id, :value => current_user.id %>
-                <%= f.submit "Upvote", :class => "button [tiny small large]"%>
+                <%= f.submit "Upvote", data: { disable_with: 'Voting...' }, :class => "button [tiny small large]"%>
               <% end %>
             </li>
             <li>
@@ -49,12 +49,10 @@
             </li>
             <li>
              <%if current_user.admin? || current_user.id == adventure.user_id %>
-                <%= button_to 'Destroy', adventure, method: :delete, data: { confirm: 'Are you sure?' }, :class => "button [tiny small large]"  %>
+                <%= button_to 'Destroy', adventure, method: :delete, data: { confirm: 'Are you sure?' }, data: { disable_with: 'Deleting...' }, :class => "button [tiny small large]"  %>
               <% end %>
             </li>
           </ul>
-        <% else %>
-          <p>Please sign in to vote.</p>
         <% end %>
       </div>
     </div>
