@@ -1,4 +1,22 @@
-<%= form_for @adventure, :html => { :multipart => true } do |f| %>
-  <%= f.file_field :slides %>
-  <%= f.submit "Add image" %>
+<% provide(:title, 'Edit adventure') %>
+<div class="row">
+  <div class="small-9 small-centered columns story">
+    <% unless @adventure.photo.blank? %>
+      <%= image_tag @adventure.photo.url(:medium) %>
+    <% end %>
+    <p class="adventure"><%= @adventure.story %></p>
+  </div>
+</div>
+
+<%= form_for(@adventure, :html => { :multipart => true }) do |f| %>
+  <%= f.label(:photo, 'Upload photo') %>
+  <%= f.file_field(:photo) %>
+
+  <% if @adventure.photo? %>
+    <%= f.label(:delete_photo, 'Delete photo') %>
+    <%= f.check_box(:delete_photo, options = {}, checked_value = "1", unchecked_value = "0") %>
+  <% end %>
+
+  <%= f.submit "Update image" %>
 <% end %>
+

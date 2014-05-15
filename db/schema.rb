@@ -22,10 +22,10 @@ ActiveRecord::Schema.define(version: 20140513233913) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "slides_file_name"
-    t.string   "slides_content_type"
-    t.integer  "slides_file_size"
-    t.datetime "slides_updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   add_index "adventures", ["ancestry"], name: "index_adventures_on_ancestry"
