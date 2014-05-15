@@ -11,10 +11,20 @@
   // height: 200px;
   float: left;
   margin: 5px;
-  padding: 5px;
+  padding-left: 5px;
   border-radius: 5px;
   min-width: 30em;
+  text-align: center;
 }
+
+.submission-button{
+
+}
+
+a.submission-button:link {color:#000000;}      /* unvisited link */
+a.submission-button:visited {color:#000000;}  /* visited link */
+a.submission-button:hover {color:#000000;}  /* mouse over link */
+a.submission-button:active {color:#000000;}  /* selected link */
 
 .divider {
 	border: none; 
@@ -24,7 +34,7 @@
 .story {
 	background-color: #A9BCF5;
 	margin: 5px;
-	padding: 5px;
+	padding-left: 5px;
 	border-radius: 5px;
 	text-align: center;
 }
