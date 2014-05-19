@@ -4,7 +4,7 @@ class Adventure < ActiveRecord::Base
   has_ancestry
   belongs_to :user
   has_many :votes, :dependent => :destroy
-  has_many :photos, :dependent => :destroy
+  has_many :uploads, :dependent => :destroy
   validates :user_id, presence: true
   validates :story, presence: true
   validates :choice, presence: true
