@@ -14,6 +14,7 @@ gem 'zurb-foundation'
 gem 'ancestry'
 gem 'state_machine'
 gem 'paperclip', github: 'thoughtbot/paperclip'
+gem 'jquery-fileupload-rails'
 gem 'whenever', :require => false
 
 group :development do

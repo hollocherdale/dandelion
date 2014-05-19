@@ -4,13 +4,13 @@ Can I edit my submited stories?
 No, once they have been submitted your only choice is to resubmit. This prevents people from changing their submissions at the last point, or changing it once it has been published
 
 What else do you want to add?
-Add dead ends.
-Add single choice nominations.
-Add scheduler to publish.
-Add critical masss publishing.
-Add aws3 storage.
-Add asynchrous file uploading.
-Add about page explaining app.
+dead ends.
+single choice nominations.
+scheduler to publish.
+critical masss publishing.
+aws3 storage.
+asynchrous file uploading.
+about page explaining app.
 Admin access / restrictions
 Create image uploading limit.
 Create saveable links to any path node
@@ -18,7 +18,8 @@ Overide devise redirect to take you to the page you were on.
 
 Update seeds to be a better story, and remove user coding.
 
-Add profile page.
+profile page.
   Display all submissions, all published content.
   Display saved paths
 Reddit style button for upvoting
+flagging inapporpriate content

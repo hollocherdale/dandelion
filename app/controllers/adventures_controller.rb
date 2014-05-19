@@ -40,7 +40,6 @@ class AdventuresController < ApplicationController
 
   def edit
     @adventure = Adventure.find(params[:id])
-    @photo = Photo.new
   end
 
   def destroy
