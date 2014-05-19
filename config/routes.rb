@@ -3,7 +3,7 @@ Dandelion::Application.routes.draw do
 
   resources :adventures
   resources :votes, :only => [:create, :destroy]
-  resources :uploads, :only => [:create, :destroy]
+  resources :photos, :only => [:create, :destroy]
 
   root 'adventures#home'
 
