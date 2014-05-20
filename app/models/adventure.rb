@@ -4,6 +4,7 @@ class Adventure < ActiveRecord::Base
   has_ancestry
   belongs_to :user
   has_many :votes, :dependent => :destroy
+#  photos are the model that has the paperclip attachment
   has_many :photos, :dependent => :destroy
   validates :user_id, presence: true
   validates :story, presence: true
