@@ -14,7 +14,7 @@
     </ul>
   </div>
 </div>
-<div><%= image_tag @upload.image, id:"image" %></div>
+<div class="image-preview"><%= image_tag @upload.image.url(:thumb), id:"image" %></div>
 <div class="row">
   <%if current_user.admin? || current_user.id == @adventure.user_id %>
     <%= form_for @upload, :html => { :multipart => true } do |f| %>
