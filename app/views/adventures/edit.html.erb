@@ -3,11 +3,11 @@
   <div class="small-9 small-centered columns story">
     <p class="adventure"><%= @adventure.story %></p>
     <ul class="small-block-grid-4">
-      <% @adventure.photos.each do |photo| %>
+      <% @adventure.uploads.each do |upload| %>
         <li>
-          <%= image_tag photo.image(:thumb) %>
+          <%= image_tag upload.image(:thumb) %>
           <%if current_user.admin? || current_user.id == @adventure.user_id %>
-             <%= button_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' }, :class => "button [tiny small large]"  %>
+             <%= button_to 'Destroy', upload, method: :delete, data: { confirm: 'Are you sure?' }, :class => "button [tiny small large]"  %>
            <% end %>
         </li>
       <% end %>
@@ -16,7 +16,7 @@
 </div>
 <div class="row">
   <%if current_user.admin? || current_user.id == @adventure.user_id %>
-    <%= form_for @photo, :html => { :multipart => true } do |f| %>
+    <%= form_for @upload, :html => { :multipart => true } do |f| %>
     	<%= f.hidden_field :adventure_id, :value => @adventure.id %>
     	<%= f.file_field :image %>
     	<%= f.submit "Add photo", data: { disable_with: 'Uploading...' } %>

@@ -40,7 +40,7 @@ class AdventuresController < ApplicationController
 
   def edit
     @adventure = Adventure.find(params[:id])
-    @photo = Photo.new
+    @upload = Upload.new
   end
 
   def destroy
@@ -52,6 +52,6 @@ class AdventuresController < ApplicationController
   private
 
     def adventure_params
-      params.require(:adventure).permit(:story, :choice, :parent_id, :user_id, :photo, :image)
+      params.require(:adventure).permit(:story, :choice, :parent_id, :user_id, :upload, :image)
     end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140515174829) do
+ActiveRecord::Schema.define(version: 20140517025146) do
 
   create_table "adventures", force: true do |t|
     t.text     "story"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20140515174829) do
 
   add_index "adventures", ["ancestry"], name: "index_adventures_on_ancestry"
 
-  create_table "photos", force: true do |t|
+  create_table "uploads", force: true do |t|
     t.integer  "adventure_id"
     t.datetime "created_at"
     t.datetime "updated_at"
