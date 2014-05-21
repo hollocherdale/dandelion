@@ -15,6 +15,7 @@ gem 'ancestry'
 gem 'state_machine'
 gem 'paperclip', github: 'thoughtbot/paperclip'
 gem 'whenever', :require => false
+gem 'aws-sdk', '~> 1.0'
 
 group :development do
 	gem 'sqlite3'
