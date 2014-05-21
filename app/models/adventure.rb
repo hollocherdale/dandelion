@@ -5,7 +5,7 @@ class Adventure < ActiveRecord::Base
   belongs_to :user
   has_many :votes, :dependent => :destroy
 #  uploads are the model that has the paperclip attachment
-  has_many :uploads, :dependent => :destroy
+  has_many :uploads, :dependent => :destroy, :limit => 4
   validates :user_id, presence: true
   validates :story, presence: true
   validates :choice, presence: true

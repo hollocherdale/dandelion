@@ -14,12 +14,12 @@
     </ul>
   </div>
 </div>
-<div class="image-preview"><%= image_tag @upload.image.url(:thumb), id:"image" %></div>
+<%= image_tag @upload.image, id:"image", class: "image-preview" %>
 <div class="row">
   <%if current_user.admin? || current_user.id == @adventure.user_id %>
     <%= form_for @upload, :html => { :multipart => true } do |f| %>
     	<%= f.hidden_field :adventure_id, :value => @adventure.id %>
-    	<%= f.file_field :image, id:"upload_image" %>
+    	<%= f.file_field :image, id:"upload_image", :required => true %>
     	<%= f.submit "Add photo", data: { disable_with: 'Uploading...' } %>
     <% end %>
   <% end %>
