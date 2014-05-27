@@ -1,24 +1,21 @@
-<p>
-	<strong>Dandelion is in pre alpha <em>development</em> stage. Please be careful with all information that you post to this site at this time; information uploaded to dandelion is not secure.</strong>
-	At this point it is a proof of concept, but a limited beta release will be happening soon.
-</p>
 <div class="row">
-<% @adventures.each do |adventure| %>
-	<% if adventure.is_root? %>
-		<p class="adventure"><%= link_to adventure.story, adventure, :class => "button" %></p>
-	<% end %>
-<% end %>
-
-<div class="row">
-	<div class="small-6 columns">
-		<h3>Top Stories</h3>
-		<% @top_adventures.each do |adventure| %>
-			<%= link_to new_adventure_path(:id => adventure.parent.id), :class => "submission-button" do %>
-				<div class="submission">
-					<p><%= adventure.choice %></p>
-					<p><%= adventure.story %></p>
-				</div>
-			<% end %>
+	<p>
+		<strong>Dandelion is in pre alpha <em>development</em> stage. Please be careful with all information that you post to this site at this time; information uploaded to dandelion is not secure.</strong>
+		At this point it is a proof of concept, but a limited beta release will be happening soon.
+	</p>
+	<% @adventures.each do |adventure| %>
+		<% if adventure.is_root? %>
+			<p class="adventure"><%= link_to adventure.story, adventure, :class => "button" %></p>
 		<% end %>
-	</div>
+	<% end %>
+
+	<h3>Top Stories</h3>
+	<% @top_adventures.each do |adventure| %>
+		<%= link_to new_adventure_path(:id => adventure.parent.id), :class => "submission-button" do %>
+			<div class="submission">
+				<p><%= adventure.choice %></p>
+				<p><%= adventure.story %></p>
+			</div>
+		<% end %>
+	<% end %>
 </div>

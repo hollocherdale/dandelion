@@ -1,0 +1,17 @@
+<ul class="inline-list">
+  <li>
+    <%= form_for adventure.votes.new do |f| %>
+      <%= f.hidden_field :adventure_id %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+      <%= f.submit "Upvote", data: { disable_with: 'Voting...' }, :class => "button [tiny small large]"%>
+    <% end %>
+  </li>
+  <li>
+    <%= adventure.vote_count %>
+  </li>
+  <li>
+   <%if current_user.admin? || current_user.id == adventure.user_id %>
+      <%= button_to 'Destroy', adventure, method: :delete, data: { confirm: 'Are you sure?' }, data: { disable_with: 'Deleting...' }, :class => "button [tiny small large]"  %>
+    <% end %>
+  </li>
+</ul>

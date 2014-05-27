@@ -24,18 +24,23 @@ class AdventuresController < ApplicationController
 
   def show
     @adventure = Adventure.find(params[:id])
+    @submissions = Adventure.find(params[:id]).children
   end
 
   def create
   	@user = current_user
     @adventure = current_user.adventures.build(adventure_params)
-    if @adventure.save
-      flash[:success] = "Adventure created!"
-      redirect_to :back
-    else
-      flash[:error] = "There was an error"
-      redirect_to :back
+    respond_to do |format|
+      format.html { redirect_to tasks_url }
+      format.js
     end
+    # if @adventure.save
+    #   flash[:success] = "Adventure created!"
+    #   redirect_to @adventure.parent
+    # else
+    #   flash[:error] = "There was an error"
+    #   redirect_to :back
+    # end
   end
 
   def edit

@@ -1,5 +1,3 @@
-<% if @upload.new_record? %>
-  alert('Failed');
-<% else %>
-  $('ul.thumbnails').append("<%=j render partial: 'photosets/upload', locals: { upload: @upload } %>");
-<% end %>
+$('#new_adventure').remove();
+$('#new_link').show();
+$('#submissions').append("<%= escape_javascript render(@adventure) %>");

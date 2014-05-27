@@ -1,60 +1,8 @@
 <% provide(:title, 'Add adventures') %>
 <% if user_signed_in? %>
-<div class="form">
-  <%= form_for(@adventure) do |f| %>
-    <% if @adventure.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@adventure.errors.count, "error") %> prohibited this adventure from being saved:</h2>
-        <ul>
-        <% @adventure.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
-    <%= f.hidden_field :parent_id, :value => params[:id] %>
-    <%= f.label :path %><br>
-    <%= f.text_area :choice, :placeholder => "What path will lead to your story?", :required => true %>
-    <%= f.label :story %><br>
-    <%= f.text_area :story, :placeholder => "Your story", :required => true %>
-    <div class="actions">
-      <%= f.submit "Post", data: { disable_with: 'Posting...' }%>
-    </div>
-  <% end %>
-</div>
+  <div class="form">
+    <%= render 'form' %>
+  </div>
 <% else %>
   <h4> Please sign in to submit your story and vote.</h4>
 <% end %>
-
-<h4>Adventure Submissions</h4>
-<div class="row">
-  <% @submissions.each do |adventure| %>
-    <div class="large-6 columns">
-      <div class="submission">
-        <p><em>This path: </em><%= adventure.choice %></p>
-        <p><em>Leads to this story: </em><%= adventure.story %></p>
-        <hr class="divider">
-        <!-- submission info:   votes, vote_up button, delete  -->
-        <% if user_signed_in? %>
-          <ul class="inline-list">
-            <li>
-              <%= form_for adventure.votes.new do |f| %>
-                <%= f.hidden_field :adventure_id %>
-                <%= f.hidden_field :user_id, :value => current_user.id %>
-                <%= f.submit "Upvote", data: { disable_with: 'Voting...' }, :class => "button [tiny small large]"%>
-              <% end %>
-            </li>
-            <li>
-              <%= adventure.vote_count %>
-            </li>
-            <li>
-             <%if current_user.admin? || current_user.id == adventure.user_id %>
-                <%= button_to 'Destroy', adventure, method: :delete, data: { confirm: 'Are you sure?' }, data: { disable_with: 'Deleting...' }, :class => "button [tiny small large]"  %>
-              <% end %>
-            </li>
-          </ul>
-        <% end %>
-      </div>
-    </div>
-  <% end %>
-</div>

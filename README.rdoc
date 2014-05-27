@@ -15,6 +15,8 @@ Admin access / restrictions
 Create image uploading limit.
 Create saveable links to any path node
 Overide devise redirect to take you to the page you were on.
+Caching resources: On show page, cache all assets of children.
+show choices button/trigger (don't show the choices immediately so there can be spoilerful choices)
 
 Update seeds to be a better story, and remove user coding.
 
