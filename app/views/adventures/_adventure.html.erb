@@ -1,15 +1,9 @@
-<div class="adventure">
-	<div class="created_at"><%= adventure.created_at.strftime("%B %d, %Y") %></div>
-	<p>
-		<div class="choice">
-			Choosing "<%= adventure.choice %>"
-		</div>
-		<div class="story">
-			leads to "<%= adventure.story %>"
-		</div>
-	</p>
-	<%if current_user.admin? %>
-	  <%= link_to "Add a path", new_adventure_path(:parent_id => adventure) %> |
-	  <%= link_to 'Destroy', adventure, method: :delete, data: { confirm: 'Are you sure?' }  %>
-	<% end %>
+<div class="large-6 columns">
+  <div class="submission">
+    <p><em>This path: </em><%= adventure.choice %></p>
+    <p><em>Leads to this story: </em><%= adventure.story %></p>
+    <% if user_signed_in? %>
+      <%= render partial: 'submission_links', locals: {adventure: adventure} %>
+    <% end %>
+  </div>
 </div>

@@ -28,19 +28,18 @@ class AdventuresController < ApplicationController
   end
 
   def create
-  	@user = current_user
+    @user = current_user
     @adventure = current_user.adventures.build(adventure_params)
     respond_to do |format|
-      format.html { redirect_to tasks_url }
-      format.js
+      if @adventure.save
+        format.html { redirect_to @adventure.parent, notice: 'Adventure was successfully created.' }
+        format.js   {}
+        format.json { render json: @adventure, status: :created, location: @adventure }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @adventure.errors, status: :unprocessable_entity }
+      end
     end
-    # if @adventure.save
-    #   flash[:success] = "Adventure created!"
-    #   redirect_to @adventure.parent
-    # else
-    #   flash[:error] = "There was an error"
-    #   redirect_to :back
-    # end
   end
 
   def edit

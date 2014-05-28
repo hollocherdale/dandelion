@@ -11,7 +11,7 @@
 
 	<h3>Top Stories</h3>
 	<% @top_adventures.each do |adventure| %>
-		<%= link_to new_adventure_path(:id => adventure.parent.id), :class => "submission-button" do %>
+		<%= link_to adventure_path(:id => adventure.parent.id), :class => "submission-button" do %>
 			<div class="submission">
 				<p><%= adventure.choice %></p>
 				<p><%= adventure.story %></p>
