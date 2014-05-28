@@ -22,5 +22,9 @@ class Adventure < ActiveRecord::Base
     event :publish_close do
       transition :published_open => :published_close
     end
+
+    event :publish_popular do
+      transition :published_open => :published_popular
+    end
   end
 end

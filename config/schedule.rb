@@ -1,15 +1,14 @@
 set :output, "#{path}/log/cron.log"
+job_type :script, "'#{path}/script/:task' :output"
 
-every 1.hours do
-  runner "Adventure.where(state: 'published_open').each do |adventure|
-            adventure.publish_close
-            adventure.children.order(:vote_count).first(2).each do |top_voted|
-              top_voted.publish_open
-            end
-            adventure.children.where(state: 'pending').each do |pending_adventure|
-              pending_adventure.archive
-            end
-          end"
+# Everything that has 50 votes in total, is marked for publishing for that night
+
+every :day, at: "1:00 am" do
+  script "publish_popular"
+end
+
+every :friday, at: "1:00 am" do
+  script "publish_normal"
 end
 
 

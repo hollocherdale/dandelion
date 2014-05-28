@@ -6,6 +6,9 @@ class VotesController < ApplicationController
     if @vote.save
       redirect_to :back, notice: "Thank you for voting."
       @adventure.increment!(:vote_count, by = 1)
+      if @adventure.vote_count > 10
+        @adventure.publish_popular
+      end
     else
       redirect_to :back, alert: "Unable to vote, perhaps you already did."
     end  
