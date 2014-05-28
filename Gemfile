@@ -6,7 +6,6 @@ gem 'sass-rails', '~> 4.0.2'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
-gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 gem 'devise'
@@ -16,6 +15,9 @@ gem 'state_machine'
 gem 'paperclip', github: 'thoughtbot/paperclip'
 gem 'whenever', :require => false
 gem 'aws-sdk', '~> 1.0'
+
+# turbolinks is causing ajax forms to load multiple times on a page
+# gem 'turbolinks'
 
 group :development do
 	gem 'sqlite3'
