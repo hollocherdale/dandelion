@@ -31,7 +31,7 @@ class AdventuresController < ApplicationController
   	@user = current_user
     @adventure = current_user.adventures.build(adventure_params)
     respond_to do |format|
-      format.html { redirect_to tasks_url }
+      format.html { redirect_to adventure_url }
       format.js
     end
     # if @adventure.save
