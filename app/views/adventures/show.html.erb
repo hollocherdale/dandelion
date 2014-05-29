@@ -12,7 +12,7 @@
 <div class="row">
   <% if @adventure.published_open? %>
     <div class="small-9 small-centered columns">
-    <%= link_to 'Add a story', new_adventure_path(:id => @adventure.id), :id => "new_link", :class => "button", remote: true %>
+      <%= link_to 'Add a story', new_adventure_path(:id => @adventure.id), :id => "new_link", :class => "button", remote: true %>
     </div>
     <h4>Adventure Submissions</h4>
     <div class="row" id="submissions">
