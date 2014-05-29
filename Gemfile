@@ -15,8 +15,8 @@ gem 'state_machine'
 gem 'paperclip', github: 'thoughtbot/paperclip'
 gem 'whenever', :require => false
 gem 'aws-sdk', '~> 1.0'
-gem 'capistrano', '~> 3.2.0'
 gem 'newrelic_rpm'
+gem 'figaro'
 
 
 # turbolinks is causing ajax forms to load multiple times on a page
