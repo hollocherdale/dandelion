@@ -1,13 +1,13 @@
 require 'rubygems'
-require 'rufus/scheduler'
-load File.join(RAILS_ROOT, 'lib', 'tasks', 'publish_popular.rake')
+require 'rufus-scheduler'
+load File.join(Rails.root, 'lib', 'tasks', 'publish.rake')
 
-scheduler = Rufus::Scheduler.start_new(:frequency => 600.0 )
+scheduler = Rufus::Scheduler.new
 
 scheduler.every '5m' do
-  rake publish_popular
+  rake publish:popular
 end
 
 scheduler.every '1w' do
-  rake publish_normal
+  rake publish:normal
 end
