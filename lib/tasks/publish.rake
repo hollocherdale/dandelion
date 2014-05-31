@@ -16,7 +16,7 @@ namespace :publish do
 
   desc "Publish any adventure"
   task :normal => :environment do
-    Adventure.where(state: 'published_normal').each do |adventure|
+    Adventure.where(state: 'published_open').each do |adventure|
       adventure.publish_close
       adventure.children.order(:vote_count).first(2).each do |top_voted|
         top_voted.publish_open

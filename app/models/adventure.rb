@@ -19,12 +19,12 @@ class Adventure < ActiveRecord::Base
       transition :pending => :published_open 
     end
 
-    event :publish_close do
-      transition :published_open => :published_close
-    end
-
     event :publish_popular do
       transition :published_open => :published_popular
+    end
+
+    event :publish_close do
+      transition [:published_open, :published_popular] => :published_close
     end
   end
 end
