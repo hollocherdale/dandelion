@@ -14,7 +14,7 @@ class AdventuresController < ApplicationController
     @vote = Vote.new
   	@adventure = Adventure.new
     @parent = Adventure.find(params[:id])
-    if @parent.published_open?
+    if @parent.accepting_subs?
       @submissions = Adventure.find(params[:id]).children
     else
       redirect_to root_url

@@ -36,7 +36,7 @@ one_root_story = Adventure.create!(
 			choice: 		"Go back outside to find some wood so you can make a torch.",
 			story: 			"You scavenge around the plains but can find no trees. Guess that's a dead end.",
 			ancestry: 		"1/2",
-			state:  		'published_open',
+			state:  		'open',
 			user_id: 		1
 		)
 
@@ -52,7 +52,7 @@ one_root_story = Adventure.create!(
 				choice: 		"With all this awesome equipment, time to begin delving to the depths of this cave. Got to find some diamonds!",
 				story: 			"You begin searching through the caves. Throughout the tunnels you pass huge veins of iron and coal.",
 				ancestry: 		"1/2/4",
-				state:  		'published_open',
+				state:  		'open',
 				user_id: 		1
 			)
 
@@ -68,7 +68,7 @@ one_root_story = Adventure.create!(
 					choice: 		"Better head to the village, see what's up.",
 					story: 			"Boom!",
 					ancestry: 		"1/2/4/6",
-					state:  		'published_open',
+					state:  		'open',
 					user_id: 		1
 				)
 
@@ -92,7 +92,7 @@ one_root_story = Adventure.create!(
 				choice: 		"This water could be useful for building a farm. Then I'll have a stable supply of food. I'll craft a shovel and hoe.",
 				story: 			"After a few longs day of work, you begin to build a nice wheat farm on the outskirst of the village. This will come in handy for a reliable source of food.",
 				ancestry: 		"1/8/9",
-				state:  		'published_open',
+				state:  		'open',
 				user_id: 		1
 			)
 
@@ -100,7 +100,7 @@ one_root_story = Adventure.create!(
 				choice: 		"I could use these supplies to build a grant entrance to this village. Perhaps that will entice some locals to come stay here.",
 				story: 			"After a few longs day of work, you begin to build a grand gate over the entrance, more decorative than protecting. It is visible from afar and gives an official feel to the village.",
 				ancestry: 		"1/8/9",
-				state:  		'published_open',
+				state:  		'open',
 				user_id: 		1
 			)
 
@@ -116,6 +116,6 @@ one_root_story = Adventure.create!(
 			choice: 		"I better start building some fortifications",
 			story: 			"After a few longs day of work, you begin to build a rudimentary wall around the village. It will at least slow down any enemies who try to penetrate the village, although it probably won't scary any away.",
 			ancestry: 		"1/8/12",
-			state:  		'published_open',
+			state:  		'open',
 			user_id: 		1
 			)

@@ -4,7 +4,7 @@ class Adventure < ActiveRecord::Base
   has_ancestry
   belongs_to :user
   has_many :votes, :dependent => :destroy
-#  uploads are the model that has the paperclip attachment
+# uploads are the model that has the paperclip attachment
   has_many :uploads, :dependent => :destroy, :limit => 4
   validates :user_id, presence: true
   validates :story, presence: true
@@ -15,16 +15,29 @@ class Adventure < ActiveRecord::Base
       transition :pending => :archived
     end
   
-    event :publish_open do
-      transition :pending => :published_open 
+    event :publish do
+      transition :pending => :accepting_subs 
     end
 
-    event :publish_popular do
-      transition :published_open => :published_popular
+    event :upvoted do
+      transition :accepting_subs => :accepting_subs_popular
     end
 
-    event :publish_close do
-      transition [:published_open, :published_popular] => :published_close
+    event :close do
+      transition [:accepting_subs, :accepting_subs_popular] => :closed
     end
   end
+
+  private
+
+    def self.publish_top_voted_children
+      self.children.order(:vote_count).first(2).each do |top_voted|
+        top_voted.publish
+      end
+    end
+
+  def self.archive_pending_children
+    self.children.where(state: 'pending').each do |pending_adventure|
+      pending_adventure.archive
+    end
 end
