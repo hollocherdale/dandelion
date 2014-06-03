@@ -9,8 +9,14 @@
   </div>
 </div>
 
+<% if @adventure.parent %>
+  <div class="row">
+    <%= link_to 'Backstory', @adventure.parent %>
+  </div>
+<% end %>
+
 <div class="row">
-  <% if @adventure.open? %>
+  <% if @adventure.accepting_submissions? || @adventure.populated? || @adventure.popular? %>
     <div class="small-9 small-centered columns">
       <%= link_to 'Add a story', new_adventure_path(:id => @adventure.id), :id => "new_link", :class => "button", remote: true %>
     </div>
@@ -40,3 +46,5 @@
     <% end %>
   <% end %>
 </div>
+
+

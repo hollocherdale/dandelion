@@ -3,7 +3,9 @@ class AdventuresController < ApplicationController
 
   def home
     @adventures = Adventure.all
-    @top_adventures = Adventure.where(state: "pending").order(vote_count: :desc).first(2)
+    @top_submissions = Adventure.all.where(state: "pending").order(vote_count: :desc)
+    @popular_adventures = Adventure.where(state: "popular").order(vote_count: :desc)
+    @unpopulated_adventures = Adventure.where(state: "accepting_submissions").order(vote_count: :desc)
   end
 
   def index
@@ -14,7 +16,7 @@ class AdventuresController < ApplicationController
     @vote = Vote.new
   	@adventure = Adventure.new
     @parent = Adventure.find(params[:id])
-    if @parent.accepting_subs?
+    if @parent.accepting_submissions? || @parent.populated?
       @submissions = Adventure.find(params[:id]).children
     else
       redirect_to root_url
@@ -32,6 +34,7 @@ class AdventuresController < ApplicationController
     @adventure = current_user.adventures.build(adventure_params)
     respond_to do |format|
       if @adventure.save
+        @adventure.parent.populate
         format.html { redirect_to @adventure.parent, notice: 'Adventure was successfully created.' }
         format.js   {}
         format.json { render json: @adventure, status: :created, location: @adventure }

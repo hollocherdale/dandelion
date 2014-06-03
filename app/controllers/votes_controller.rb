@@ -6,7 +6,7 @@ class VotesController < ApplicationController
     if @vote.save
       redirect_to :back, notice: "Thank you for voting."
       @adventure.increment!(:vote_count, by = 1)
-      if @adventure.vote_count > 4 && @adventure.parent.open?
+      if @adventure.vote_count > 4
         @adventure.parent.upvoted
       end
     else

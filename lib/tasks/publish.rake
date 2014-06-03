@@ -1,21 +1,28 @@
 require 'rake'
 
-namespace :publish do
-  desc "Publish popular adventures"
-  task :popular => :environment do
-    Adventure.where(state: 'accepting_subs_popular').each do |adventure|
+# namespace :publish do
+  desc "Publish only popular adventures"
+  task :normal => :environment do
+    Adventure.where(state: 'populated').each do |adventure|
       adventure.close
-      adventure.publish_top_voted_children
-      adventure.archive_pending_children
+      adventure.children.order(:vote_count).first(2).each do |top_voted|
+        top_voted.publish
+      end
+      adventure.children.where(state: 'pending').each do |pending_adventure|
+        pending_adventure.archive
+      end
     end
   end
 
-  desc "Publish any adventure"
-  task :normal => :environment do
-    Adventure.where(state: 'accepting_subs').each do |adventure|
+  task :popular => :environment do
+    Adventure.where(state: 'popular').each do |adventure|
       adventure.close
-      adventure.publish_top_voted_children
-      adventure.archive_pending_children
+      adventure.children.order(:vote_count).first(2).each do |top_voted|
+        top_voted.publish
+      end
+      adventure.children.where(state: 'pending').each do |pending_adventure|
+        pending_adventure.archive
+      end
     end
   end
-end
+# end

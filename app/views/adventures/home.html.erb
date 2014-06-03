@@ -1,21 +1,29 @@
 <div class="row">
 	<p>
-		<strong>Dandelion is in pre alpha <em>development</em> stage. Please be careful with all information that you post to this site at this time; information uploaded to dandelion is not secure.</strong>
-		At this point it is a proof of concept, but a limited beta release will be happening soon.
-	</p>
+		<strong>Dandelion is in alpha realease. All information submitted here should be considered public. To contribute, visit <a href='https://github.com/hollocherDale/dandelion'>the github page</a></strong>
+  </p>
 	<% @adventures.each do |adventure| %>
 		<% if adventure.is_root? %>
 			<p class="adventure"><%= link_to adventure.story, adventure, :class => "button" %></p>
 		<% end %>
 	<% end %>
-
-	<h3>Top Stories</h3>
-	<% @top_adventures.each do |adventure| %>
-		<%= link_to adventure_path(:id => adventure.parent.id), :class => "submission-button" do %>
-			<div class="submission">
-				<p><%= adventure.choice %></p>
-				<p><%= adventure.story %></p>
-			</div>
+	<% unless @top_submissions.blank? %>
+		<h3>Top Submissions</h3>
+	<% end %>
+	<% @top_submissions.each do |adventure| %>
+		<div class="row">
+			<%= link_to adventure_path(:id => adventure.parent.id), :class => "submission-button" do %>
+				<div class="submission">
+					<p><%= adventure.choice %></p>
+					<p><%= adventure.story %></p>
+				</div>
+			<% end %>
+		</div>
+	<% end %>
+	<h3>Unpopulated Adventures</h3>
+	<% @unpopulated_adventures.each do |adventure| %>
+		<%= link_to adventure_path(:id => adventure.id), :class => "submission-button" do %>
+		  <p class="adventure submission"><%= adventure.choice %></p>
 		<% end %>
 	<% end %>
 </div>

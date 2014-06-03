@@ -9,7 +9,7 @@
 		</div>
 	</p>
 	<%if current_user.admin? %>
-		<% if adventure.open? %>
+		<% if adventure.accepting_submissions? %>
 			<%= link_to "Add a path", new_adventure_path(:id => adventure.id) %> |
 		<% end %>
 	  <%= link_to 'Destroy', adventure, method: :delete, data: { confirm: 'Are you sure?' }  %>

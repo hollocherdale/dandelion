@@ -12,7 +12,7 @@
   float: left;
   margin: 5px;
   padding-left: 5px;
-  border-radius: 5px;
+  border-radius: 1px;
   min-width: 30em;
   text-align: center;
 }
@@ -35,23 +35,23 @@ a.submission-button:active {color:#000000;}  /* selected link */
   background-color: #A9BCF5;
   margin: 5px;
   padding-left: 5px;
-  border-radius: 5px;
+  border-radius: 1px;
   text-align: center;
 }
 
 .choice {
   background-color: #D8D8D8;
-  border-radius: 5px;
+  border-radius: 1px;
   text-align: center;
 }
 
 .adventure{
-  font-size: 1.5em;
+  font-size: 1em;
   font-family: "Verdana, Geneva", sans-serif;
 }
 
 
 .image-preview{
-  border-radius: 15px;
+  border-radius: 5px;
   max-width: 150px;
 }
