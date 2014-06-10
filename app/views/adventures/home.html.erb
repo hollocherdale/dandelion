@@ -1,29 +1,31 @@
 <div class="row">
-	<p>
-		<strong>Dandelion is in alpha realease. All information submitted here should be considered public. To contribute, visit <a href='https://github.com/hollocherDale/dandelion'>the github page</a></strong>
-  </p>
-	<% @adventures.each do |adventure| %>
-		<% if adventure.is_root? %>
-			<p class="adventure"><%= link_to adventure.story, adventure, :class => "button" %></p>
-		<% end %>
-	<% end %>
-	<% unless @top_submissions.blank? %>
-		<h3>Top Submissions</h3>
-	<% end %>
-	<% @top_submissions.each do |adventure| %>
-		<div class="row">
-			<%= link_to adventure_path(:id => adventure.parent.id), :class => "submission-button" do %>
-				<div class="submission">
-					<p><%= adventure.choice %></p>
-					<p><%= adventure.story %></p>
-				</div>
+	<div class="small-12 columns">
+		<p>
+			<strong>Dandelion is in alpha realease. All information submitted here should be considered public. To contribute, visit <a href='https://github.com/hollocherDale/dandelion'>the github page</a></strong>
+	  </p>
+		<% @adventures.each do |adventure| %>
+			<% if adventure.is_root? %>
+				<p class="adventure"><%= link_to adventure.story, adventure, :class => "button" %></p>
 			<% end %>
-		</div>
-	<% end %>
-	<h3>Unpopulated Adventures</h3>
-	<% @unpopulated_adventures.each do |adventure| %>
-		<%= link_to adventure_path(:id => adventure.id), :class => "submission-button" do %>
-		  <p class="adventure submission"><%= adventure.choice %></p>
 		<% end %>
-	<% end %>
+		<% unless @top_submissions.blank? %>
+			<h3>Top Submissions</h3>
+		<% end %>
+		<% @top_submissions.each do |adventure| %>
+			<div class="row">
+				<%= link_to adventure_path(:id => adventure.parent.id), :class => "submission-button" do %>
+					<div class="submission">
+						<p><%= adventure.choice %></p>
+						<p><%= adventure.story %></p>
+					</div>
+				<% end %>
+			</div>
+		<% end %>
+		<h3>Unpopulated Adventures</h3>
+		<% @unpopulated_adventures.each do |adventure| %>
+			<%= link_to adventure_path(:id => adventure.id), :class => "submission-button" do %>
+			  <p class="adventure submission"><%= adventure.choice %></p>
+			<% end %>
+		<% end %>
+	</div>
 </div>

@@ -31,7 +31,7 @@
   margin-right: auto;
   margin-top: 0;
   margin-bottom: 0;
-  max-width: 100%;
+  max-width: 100rem;
   background: rgb(201,222,150); /* Old browsers */
   background: -moz-linear-gradient(top,  rgba(201,222,150,1) 0%, rgba(138,182,107,1) 44%, rgba(57,130,53,1) 100%); /* FF3.6+ */
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(201,222,150,1)), color-stop(44%,rgba(138,182,107,1)), color-stop(100%,rgba(57,130,53,1))); /* Chrome,Safari4+ */
@@ -45,9 +45,31 @@
   box-shadow: 0px 2px 6px 1px rgba(0,0,0,0.85);
 }
 
+#header-title{
+  /* unvisited link */
+  a:link {
+  color: white;
+  }
+
+  /* visited link */
+  a:visited {
+  color: white;
+  }
+
+  /* mouse over link */
+  a:hover {
+  color: white;
+  }
+
+  /* selected link */
+  a:active {
+  color: white;
+  }
+}
+
 #login {
-  background: white;
-  padding: 10px;
+  background: #F2F2F2;
+  padding: 5px;
   -webkit-box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.75);
   -moz-box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.75);
   box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.75);
