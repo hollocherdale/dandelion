@@ -1,6 +1,7 @@
 // Place all the styles related to the adventures controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
 .nested_adventures {
   margin-left: 20px;
 }
@@ -30,9 +31,7 @@ a.submission-button:active {color:#000000;}  /* selected link */
 }
 
 .story {
-  background-color: #A9BCF5;
   margin: 5px;
-  padding-left: 5px;
   border-radius: 1px;
   text-align: center;
 }
@@ -43,11 +42,53 @@ a.submission-button:active {color:#000000;}  /* selected link */
   text-align: center;
 }
 
-.adventure{
-  font-size: 1em;
-  font-family: "Verdana, Geneva", sans-serif;
+div.choice p{
+  margin: 0;
+  padding: 0;
 }
 
+/*Fade all DIV when hovers on any div*/
+.choices:hover .choice{
+  zoom: 1;
+  filter: alpha(opacity=45);
+  opacity: 0.45;
+  -webkit-transition: opacity .25s ease-in-out;
+  -moz-transition: opacity .25s ease-in-out;
+  -ms-transition: opacity .25s ease-in-out;
+  -o-transition: opacity .25s ease-in-out;
+  transition: opacity .25s ease-in-out;
+}
+
+/*Fade in particular DIV when hover on that DIV*/
+.choices .choice:hover{
+  box-shadow: 3px 3px 15px #666;
+  border-color:#C76C0C;
+  background: white;
+  
+  /*Opacity*/
+  zoom: 1.05;
+  filter: alpha(opacity=100);
+  opacity: 1;
+}
+
+.backstory{
+  margin-top: 10px;
+  padding: 5px;
+  background-color: #D8D8D8;
+  border-radius: 1px;
+  text-align: center;
+}
+
+.backstory:hover{
+  box-shadow: 3px 3px 15px #666;
+  border-color:#C76C0C;
+  background: white;
+  
+  /*Opacity*/
+  zoom: 1.05;
+  filter: alpha(opacity=100);
+  opacity: 1;
+}
 
 .image-preview{
   border-radius: 5px;

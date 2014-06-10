@@ -1,7 +1,15 @@
 <% provide(:title, 'Adventure') %>
 
+<% if @adventure.parent %>
+  <div class="row">
+    <div class="small-6 column backstory">
+      <%= link_to 'Backstory', @adventure.parent %>
+    </div>
+  </div>
+<% end %>
+
 <div class="row">
-  <div class="small-9 small-centered columns story">
+  <div class="small-12 large-8 small-centered columns story">
     <p class="adventure"><%= @adventure.story %></p>
     <% @adventure.uploads.each do |upload| %>
       <%= image_tag upload.image(:medium) %>
@@ -9,15 +17,9 @@
   </div>
 </div>
 
-<% if @adventure.parent %>
+<% if @adventure.accepting_submissions? || @adventure.populated? || @adventure.popular? %>
   <div class="row">
-    <%= link_to 'Backstory', @adventure.parent %>
-  </div>
-<% end %>
-
-<div class="row">
-  <% if @adventure.accepting_submissions? || @adventure.populated? || @adventure.popular? %>
-    <div class="small-9 small-centered columns">
+    <div class="small-12 large-8 small-centered columns">
       <% if user_signed_in? %>
         <%= link_to 'Add a story', new_adventure_path(:id => @adventure.id), :id => "new_link", :class => "button", remote: true %>
       <% else %>
@@ -30,25 +32,23 @@
         <%= render 'adventure', adventure: adventure %>
       <% end %>
     </div>
-  <% else %>
+  </div>
+<% else %>
+  <div class="row choices">
     <% @adventure.children.each do |child| %>
       <% if child.is_only_child? %>
-          <div class="small-6 small-centered columns choice">
-            <p class="adventure"><%= child.choice %></p>
-            <%= link_to 'Follow this path', child, :class => "button" %>
+        <%= link_to child do %>
+          <div class="small-12 small-centered columns choice">
+            <p><%= child.choice %></p>
           </div>
+        <% end %>
       <% else %>
-        <div class="small-5 columns choice"> 
-          <div class="row"> 
-            <p class="adventure"><%= child.choice %></p>
+        <%= link_to child do %>
+          <div class="small-6 columns choice"> 
+            <p><%= child.choice %></p>
           </div>
-          <div class="small-6 small-centered columns">
-            <%= link_to 'Choose this path', child, :class => "button" %>
-          </div>
-        </div>
+        <% end %>
       <% end %>
     <% end %>
-  <% end %>
-</div>
-
-
+  </div>
+<% end %>
