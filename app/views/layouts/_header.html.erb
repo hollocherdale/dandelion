@@ -1,16 +1,19 @@
-<div class="row">
+<div class="row" id="header">
   <div class="small-2 columns">
-    <%= link_to image_tag('logo.png', alt: 'dandelion_logo'), root_path %>
+    <%= link_to image_tag('logo.png', alt: 'dandelion_logo', size: '70'), root_path %>
   </div>
-  <div class="small-8 columns">
-    <h1>Dandelion Adventure Quest</h1>
+  <div class="small-7 columns">
+    <h2>Dandelion Adventure Quest</h2>
   </div>
-  <div class="small-2 columns">
-    <% if user_signed_in? %>
-      <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-    <% else %>
-      <%= link_to "Sign in", new_user_session_path %> |
-      <%= link_to "Sign Up", new_user_registration_path %>
-    <% end %>
+  <div class="small-3 columns" id="login">
+    <small>
+      <% if user_signed_in? %>
+        <%= current_user.email %> |
+        <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+      <% else %>
+        <%= link_to "Sign in", new_user_session_path %> |
+        <%= link_to "Sign Up", new_user_registration_path %>
+      <% end %>
+    </small>
   </div>
 </div>

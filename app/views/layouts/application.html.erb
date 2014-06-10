@@ -19,10 +19,10 @@
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/custom.modernizr" %>
     <%= csrf_meta_tags %>
-    <%= render 'layouts/header' %>
     <%= javascript_include_tag "application" %>
   </head>
   <body>
+    <%= render 'layouts/header' %>
     <div class="row">
       <% flash.each do |name, msg| %>
          <%= content_tag :div, msg, class: "alert-box #{name}" %>
@@ -32,3 +32,4 @@
     <%= render 'layouts/footer' %>
   </body>
 </html>
+  

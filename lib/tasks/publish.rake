@@ -1,6 +1,5 @@
 require 'rake'
-
-# namespace :publish do
+namespace :publish do
   desc "Publish only popular adventures"
   task :normal => :environment do
     Adventure.where(state: 'populated').each do |adventure|
@@ -25,4 +24,4 @@ require 'rake'
       end
     end
   end
-# end
+end

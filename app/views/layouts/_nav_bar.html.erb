@@ -1,0 +1,43 @@
+<header>
+<nav class="top-bar" data-topbar>
+  <ul class="title-area">
+
+    <li class="name">
+      <h1>Dandelion Adventure Quest</h1>
+    </li>
+  </ul>
+
+  <section class="top-bar-section">
+    <!-- Right Nav Section -->
+    <ul class="right">
+      <li class="active"><a href="#">Right Button Active</a></li>
+      <li class="has-dropdown">
+        <a href="#">Right Button Dropdown</a>
+        <ul class="dropdown">
+          <li><a href="#">First link in dropdown</a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <ul class="left">
+      <li>
+        <%= link_to image_tag('logo.png', alt: 'dandelion_logo', size: '100'), root_path %>
+      </li>
+    </ul>
+  </section>
+</nav>
+  <% if false %>
+  <div class="row">
+    <div class="small-8 columns">
+      <h1>Dandelion Adventure Quest</h1>
+    </div>
+    <div class="small-2 columns">
+      <% if user_signed_in? %>
+        <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+      <% else %>
+        <%= link_to "Sign in", new_user_session_path %> |
+        <%= link_to "Sign Up", new_user_registration_path %>
+      <% end %>
+    </div>
+  <% end %>
+</header>
