@@ -1,6 +1,6 @@
 class AdventuresController < ApplicationController
   before_filter :authenticate_user!, except: [:home, :show, :about, :new]
-  before_action :set_adventure, only: [:show, :edit, :destroy, :upvote, :downvote]
+  before_action :set_adventure, only: [:show, :edit, :destroy, :upvote, :downvote, :remove_upvote, :remove_downvote]
 
   def home
     @adventures = Adventure.all
@@ -60,6 +60,16 @@ class AdventuresController < ApplicationController
 
   def downvote
     @adventure.disliked_by current_user
+    redirect_to @adventure.parent
+  end
+
+  def remove_upvote
+    @adventure.unliked_by current_user
+    redirect_to @adventure.parent
+  end
+
+  def remove_downvote
+    @adventure.undisliked_by current_user
     redirect_to @adventure.parent
   end
 

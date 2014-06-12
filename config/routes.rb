@@ -3,8 +3,10 @@ Dandelion::Application.routes.draw do
 
   resources :adventures do
     member do
-      put "like",    to: "adventures#upvote"
-      put "dislike", to: "adventures#downvote"
+      put "like",           to: "adventures#upvote"
+      put "dislike",        to: "adventures#downvote"
+      put "remove_like",    to: "adventures#remove_upvote"
+      put "remove_dislike", to: "adventures#remove_downvote"
     end
   end
 
