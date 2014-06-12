@@ -1,13 +1,10 @@
 <ul class="inline-list">
   <li>
-    <%= form_for adventure.votes.new do |f| %>
-      <%= f.hidden_field :adventure_id %>
-      <%= f.hidden_field :user_id, :value => current_user.id %>
-      <%= f.submit "Upvote", data: { disable_with: 'Voting...' }, :class => "button [tiny small large]"%>
-    <% end %>
+    <small><%= link_to "Up", like_adventure_path(adventure), method: :put %></small>
+    <small><%= link_to "Down", dislike_adventure_path(adventure), method: :put %></small>
   </li>
   <li>
-    <%= adventure.vote_count %>
+    <%= adventure.get_rank %>
   </li>
   <li>
    <%if current_user.admin? || current_user.id == adventure.user_id %>

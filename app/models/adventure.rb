@@ -1,10 +1,11 @@
 require 'state_machine'
 
 class Adventure < ActiveRecord::Base
+  acts_as_votable
   has_ancestry
   belongs_to :user
-  has_many :votes, :dependent => :destroy
-# uploads are the model that has the paperclip attachment
+  # has_many :votes, :dependent => :destroy
+  # uploads are the model that has the paperclip attachment
   has_many :uploads, :dependent => :destroy
   validates :user_id, presence: true
   validates :story, presence: true
@@ -32,19 +33,25 @@ class Adventure < ActiveRecord::Base
     end
   end
 
+  
+  def get_rank
+    rank = self.get_likes.size - self.get_dislikes.size
+  end
+
   private
 
-    def self.stage_top_voted_children
+    def stage_top_voted_children
       self.children.order(:vote_count).first(2).each do |top_voted|
         top_voted.stage
       end
     end
 
-    def self.archive_pending_children
+    def archive_pending_children
       self.children.where(state: 'pending').each do |pending_adventure|
         pending_adventure.archive
       end
     end
+
 end
 
 

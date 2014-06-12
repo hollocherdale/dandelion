@@ -1,5 +1,6 @@
 class AdventuresController < ApplicationController
   before_filter :authenticate_user!, except: [:home, :show, :about, :new]
+  before_action :set_adventure, only: [:show, :edit, :destroy, :upvote, :downvote]
 
   def home
     @adventures = Adventure.all
@@ -13,7 +14,6 @@ class AdventuresController < ApplicationController
   end
 
   def new
-    @vote = Vote.new
   	@adventure = Adventure.new
     @parent = Adventure.find(params[:id])
     if @parent.accepting_submissions? || @parent.populated?
@@ -25,7 +25,6 @@ class AdventuresController < ApplicationController
   end
 
   def show
-    @adventure = Adventure.find(params[:id])
     @submissions = Adventure.find(params[:id]).children
   end
 
@@ -46,17 +45,29 @@ class AdventuresController < ApplicationController
   end
 
   def edit
-    @adventure = Adventure.find(params[:id])
     @upload = Upload.new
   end
 
   def destroy
-  	@adventure = Adventure.find(params[:id])
   	@adventure.destroy
   	redirect_to :back
   end
 
+  def upvote
+    @adventure.liked_by current_user
+    redirect_to @adventure.parent
+  end
+
+  def downvote
+    @adventure.disliked_by current_user
+    redirect_to @adventure.parent
+  end
+
   private
+
+    def set_adventure
+      @adventure = Adventure.find(params[:id])
+    end
 
     def adventure_params
       params.require(:adventure).permit(:story, :choice, :parent_id, :user_id, :upload, :image)

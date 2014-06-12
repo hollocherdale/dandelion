@@ -35,6 +35,7 @@ GEM
       multi_json (~> 1.3)
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
+    acts_as_votable (0.10.0)
     ancestry (2.1.0)
       activerecord (>= 3.0.0)
     arel (4.0.2)
@@ -43,7 +44,6 @@ GEM
       nokogiri (>= 1.4.4)
     bcrypt (3.1.7)
     builder (3.1.4)
-    chronic (0.10.2)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.4)
@@ -146,9 +146,6 @@ GEM
       json (>= 1.8.0)
     warden (1.2.3)
       rack (>= 1.0)
-    whenever (0.9.2)
-      activesupport (>= 2.3.4)
-      chronic (>= 0.6.3)
     zurb-foundation (4.3.2)
       sass (>= 3.2.0)
 
@@ -156,6 +153,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts_as_votable (~> 0.10.0)
   ancestry
   aws-sdk (~> 1.0)
   coffee-rails (~> 4.0.0)
@@ -174,5 +172,4 @@ DEPENDENCIES
   sqlite3
   state_machine
   uglifier (>= 1.3.0)
-  whenever
   zurb-foundation
