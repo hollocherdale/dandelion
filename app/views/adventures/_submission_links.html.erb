@@ -2,15 +2,15 @@
   <li> 
     <% if current_user.voted_for? adventure %>
       <% if current_user.voted_as_when_voted_for adventure %>
-        <%= link_to image_tag('upvote.png', size: '18'), remove_like_adventure_path(adventure), method: :put %>
-        <%= link_to image_tag('downvote.png', size: '18'), dislike_adventure_path(adventure), method: :put %>
+        <%= link_to "+1", remove_like_adventure_path(adventure), method: :put %>
+        <%= link_to "-1", dislike_adventure_path(adventure), method: :put %>
       <% else %>
-        <%= link_to image_tag('upvote.png', size: '18'), like_adventure_path(adventure), method: :put %>
-        <%= link_to image_tag('downvote.png', size: '18'), remove_dislike_adventure_path(adventure), method: :put %>
+        <%= link_to "+1", like_adventure_path(adventure), method: :put %>
+        <%= link_to "-1", remove_dislike_adventure_path(adventure), method: :put %>
       <% end %>
     <% else %>
-      <%= link_to image_tag('upvote.png', size: '18'), like_adventure_path(adventure), method: :put %>
-      <%= link_to image_tag('downvote.png', size: '18'), dislike_adventure_path(adventure), method: :put %>
+      <%= link_to "+1", like_adventure_path(adventure), method: :put %>
+      <%= link_to "-1", dislike_adventure_path(adventure), method: :put %>
     <% end %>
   </li>
   <li>
