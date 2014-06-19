@@ -11,14 +11,13 @@ var upvote_link = ('<%= j link_to image_tag("upvote.png", size: '18'), upvote_ad
 if (current_up_link.data('method') == "delete") {
   current_up_link.after(upvote_link);
   current_up_link.remove();
-  rank_display.text(adventure_current_rank);
 } else {
   current_up_link.after(upvoted_link);
   current_up_link.remove();
-  rank_display.text(adventure_current_rank+1);
   if (current_down_link.data('method') == "delete") {
     current_down_link.after(downvote_link);
     current_down_link.remove();
   } 
 }
 
+rank_display.text('<%= @adventure.get_rank %>');
