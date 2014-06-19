@@ -1,24 +1,15 @@
-<ul class="inline-list">
-  <li> 
-    <% if current_user.voted_for? adventure %>
-      <% if current_user.voted_as_when_voted_for adventure %>
-        <%= link_to image_tag('upvote.png', size: '18'), remove_like_adventure_path(adventure), method: :put %>
-        <%= link_to image_tag('downvote.png', size: '18'), dislike_adventure_path(adventure), method: :put %>
-      <% else %>
-        <%= link_to image_tag('upvote.png', size: '18'), like_adventure_path(adventure), method: :put %>
-        <%= link_to image_tag('downvote.png', size: '18'), remove_dislike_adventure_path(adventure), method: :put %>
-      <% end %>
-    <% else %>
-      <%= link_to image_tag('upvote.png', size: '18'), like_adventure_path(adventure), method: :put %>
-      <%= link_to image_tag('downvote.png', size: '18'), dislike_adventure_path(adventure), method: :put %>
-    <% end %>
-  </li>
+<ul class="inline-list" id="adventure_list<%= adventure.id %>" data-rank="<%= adventure.get_rank %>">
   <li>
-    <%= adventure.get_rank %>
+    <% vote_config = adventure.get_vote_config(current_user.id) %>
+    <%= link_to image_tag(vote_config[:upvote_image], size: '18'), upvote_adventure_path(adventure), method: vote_config[:upvote_method], remote: true, id: "upvote" %>
+    <div id="rank_display"><%= adventure.get_rank %></div>
+    <%= link_to image_tag(vote_config[:downvote_image], size: '18'), downvote_adventure_path(adventure), method: vote_config[:downvote_method], remote: true, id: "downvote" %>
   </li>
   <li>
    <%if current_user.admin? || current_user.id == adventure.user_id %>
-      <%= button_to 'Destroy', adventure, method: :delete, data: { confirm: 'Are you sure?' }, data: { disable_with: 'Deleting...' }, :class => "button [tiny small large]"  %>
+      <%= link_to 'Destroy', adventure, method: :delete, data: { confirm: 'Are you sure?' }, data: { remote: true } %>
     <% end %>
   </li>
 </ul>
+
+

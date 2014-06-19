@@ -24,11 +24,12 @@ gem 'acts_as_votable', '~> 0.10.0'
 
 group :development do
 	gem 'sqlite3'
+  gem "better_errors"
+  gem "binding_of_caller"
 end
 
 
 group :doc do
-  # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
 

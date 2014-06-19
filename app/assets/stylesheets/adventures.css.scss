@@ -8,11 +8,9 @@
 
 .submission {
   background-color: #D8D8D8;
-  float: left;
   margin: 5px;
   padding-left: 5px;
   border-radius: 1px;
-  // min-width: 30em;
   text-align: center;
 }
 
@@ -49,7 +47,6 @@ div.choice p{
 
 /*Fade all DIV when hovers on any div*/
 .choices:hover .choice{
-  zoom: 1;
   filter: alpha(opacity=45);
   opacity: 0.45;
   -webkit-transition: opacity .25s ease-in-out;
@@ -66,7 +63,6 @@ div.choice p{
   background: white;
   
   /*Opacity*/
-  zoom: 1.05;
   filter: alpha(opacity=100);
   opacity: 1;
 }
@@ -85,7 +81,6 @@ div.choice p{
   background: white;
   
   /*Opacity*/
-  zoom: 1.05;
   filter: alpha(opacity=100);
   opacity: 1;
 }

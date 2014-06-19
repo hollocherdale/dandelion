@@ -1,6 +1,6 @@
 class AdventuresController < ApplicationController
   before_filter :authenticate_user!, except: [:home, :show, :about, :new]
-  before_action :set_adventure, only: [:show, :edit, :destroy, :upvote, :downvote, :remove_upvote, :remove_downvote]
+  before_action :set_adventure, only: [:show, :edit, :destroy, :vote, :upvote, :downvote, :remove_upvote, :remove_downvote]
 
   def home
     @adventures = Adventure.all
@@ -25,7 +25,7 @@ class AdventuresController < ApplicationController
   end
 
   def show
-    @submissions = Adventure.find(params[:id]).children
+    @adventures = Adventure.find(params[:id]).children
   end
 
   def create
@@ -33,13 +33,13 @@ class AdventuresController < ApplicationController
     @adventure = current_user.adventures.build(adventure_params)
     respond_to do |format|
       if @adventure.save
-        @adventure.parent.populate
+        if @adventure.only_child?
+          @adventure.parent.populate
+        end
         format.html { redirect_to @adventure.parent, notice: 'Adventure was successfully created.' }
         format.js   {}
-        format.json { render json: @adventure, status: :created, location: @adventure }
       else
         format.html { render action: "new" }
-        format.json { render json: @adventure.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -49,29 +49,61 @@ class AdventuresController < ApplicationController
   end
 
   def destroy
-  	@adventure.destroy
-  	redirect_to :back
+    @adventure.parent.unpopulate if @adventure.only_child?
+    @adventure.destroy
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js   {}
+    end
   end
 
   def upvote
-    @adventure.liked_by current_user
-    redirect_to @adventure.parent
+    if request.post? 
+       @adventure.liked_by current_user
+    elsif request.delete?
+       @adventure.unliked_by current_user
+    end
   end
-
+  
   def downvote
-    @adventure.disliked_by current_user
-    redirect_to @adventure.parent
+    if request.post? 
+       @adventure.disliked_by current_user
+    elsif request.delete?
+       @adventure.undisliked_by current_user
+    end
   end
 
-  def remove_upvote
-    @adventure.unliked_by current_user
-    redirect_to @adventure.parent
-  end
+  # def upvote
+  #   @adventure.liked_by current_user
+  #   respond_to do |format|
+  #     format.html { redirect_to @adventure.parent }
+  #     format.js   {}
+  #   end
+  # end
 
-  def remove_downvote
-    @adventure.undisliked_by current_user
-    redirect_to @adventure.parent
-  end
+  # def downvote
+  #   @adventure.disliked_by current_user
+  #   respond_to do |format|
+  #     format.html { redirect_to @adventure.parent }
+  #     format.js   {}
+  #   end
+  # end
+
+  # def remove_upvote
+  #   @adventure.unliked_by current_user
+  #   respond_to do |format|
+  #     format.html { redirect_to @adventure.parent }
+  #     format.js   {}
+  #   end
+  # end
+
+  # def remove_downvote
+  #   @adventure.undisliked_by current_user
+  #   respond_to do |format|
+  #     format.html { redirect_to @adventure.parent }
+  #     format.js   {}
+  #   end
+  # end
 
   private
 

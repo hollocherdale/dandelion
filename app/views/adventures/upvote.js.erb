@@ -1,0 +1,24 @@
+var adventure_to_update = $('#adventure_list<%= @adventure.id %>');
+var adventure_current_rank = adventure_to_update.data('rank');
+var rank_display = adventure_to_update.find("#rank_display");
+var current_down_link = adventure_to_update.find('#downvote');
+var downvoted_link = ('<%= j link_to image_tag("downvoted.png", size: '18'), downvote_adventure_path(@adventure), method: :delete, remote: true, id: "downvote" %>');
+var downvote_link = ('<%= j link_to image_tag("downvote.png", size: '18'), downvote_adventure_path(@adventure), method: :post, remote: true, id: "downvote" %>');
+var current_up_link = adventure_to_update.find('#upvote');
+var upvoted_link = ('<%= j link_to image_tag("upvoted.png", size: '18'), upvote_adventure_path(@adventure), method: :delete, remote: true, id: "upvote" %>');
+var upvote_link = ('<%= j link_to image_tag("upvote.png", size: '18'), upvote_adventure_path(@adventure), method: :post, remote: true, id: "upvote" %>');
+
+if (current_up_link.data('method') == "delete") {
+  current_up_link.after(upvote_link);
+  current_up_link.remove();
+  rank_display.text(adventure_current_rank);
+} else {
+  current_up_link.after(upvoted_link);
+  current_up_link.remove();
+  rank_display.text(adventure_current_rank+1);
+  if (current_down_link.data('method') == "delete") {
+    current_down_link.after(downvote_link);
+    current_down_link.remove();
+  } 
+}
+
