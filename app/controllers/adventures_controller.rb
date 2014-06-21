@@ -73,38 +73,6 @@ class AdventuresController < ApplicationController
     end
   end
 
-  # def upvote
-  #   @adventure.liked_by current_user
-  #   respond_to do |format|
-  #     format.html { redirect_to @adventure.parent }
-  #     format.js   {}
-  #   end
-  # end
-
-  # def downvote
-  #   @adventure.disliked_by current_user
-  #   respond_to do |format|
-  #     format.html { redirect_to @adventure.parent }
-  #     format.js   {}
-  #   end
-  # end
-
-  # def remove_upvote
-  #   @adventure.unliked_by current_user
-  #   respond_to do |format|
-  #     format.html { redirect_to @adventure.parent }
-  #     format.js   {}
-  #   end
-  # end
-
-  # def remove_downvote
-  #   @adventure.undisliked_by current_user
-  #   respond_to do |format|
-  #     format.html { redirect_to @adventure.parent }
-  #     format.js   {}
-  #   end
-  # end
-
   private
 
     def set_adventure
