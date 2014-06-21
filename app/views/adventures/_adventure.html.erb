@@ -4,7 +4,7 @@
       <% if user_signed_in? %>
         <ul class="inline-list" id="adventure_list<%= adventure.id %>" data-rank="<%= adventure.get_rank %>">
           <li>
-            <% vote_config = adventure.get_vote_config(current_user.id) %>
+            <% vote_config = adventure.get_vote_config(current_user) %>
             <%= link_to image_tag(vote_config[:upvote_image], size: '18'), upvote_adventure_path(adventure), method: vote_config[:upvote_method], remote: true, id: "upvote" %>
             <div id="rank_display"><%= adventure.get_rank %></div>
             <%= link_to image_tag(vote_config[:downvote_image], size: '18'), downvote_adventure_path(adventure), method: vote_config[:downvote_method], remote: true, id: "downvote" %>

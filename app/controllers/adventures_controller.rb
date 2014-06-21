@@ -4,23 +4,23 @@ class AdventuresController < ApplicationController
 
   def home
     @adventures = Adventure.all
-    @top_submissions = Adventure.all.where(state: "pending").order(vote_count: :desc)
-    @popular_adventures = Adventure.where(state: "popular").order(vote_count: :desc)
-    @unpopulated_adventures = Adventure.where(state: "accepting_submissions").order(vote_count: :desc)
+    @top_submissions = Adventure.where(state: 'pending').order(vote_count: :desc)
+    @popular_adventures = Adventure.where(state: 'popular').order(vote_count: :desc)
+    @unpopulated_adventures = Adventure.where(state: 'accepting_submissions').order(vote_count: :desc)
   end
 
   def index
-  	@adventures = Adventure.scoped
+    @adventures = Adventure.scoped
   end
 
   def new
-  	@adventure = Adventure.new
+    @adventure = Adventure.new
     @parent = Adventure.find(params[:id])
     if @parent.accepting_submissions? || @parent.populated?
       @submissions = Adventure.find(params[:id]).children
     else
       redirect_to root_url
-      flash[:error] = "Sorry, that adventure is already populated."
+      flash[:error] = 'Sorry, that adventure is already populated.'
     end
   end
 
@@ -39,7 +39,7 @@ class AdventuresController < ApplicationController
         format.html { redirect_to @adventure.parent, notice: 'Adventure was successfully created.' }
         format.js   {}
       else
-        format.html { render action: "new" }
+        format.html { render action: 'new' }
       end
     end
   end
@@ -58,60 +58,29 @@ class AdventuresController < ApplicationController
   end
 
   def upvote
-    if request.post? 
+    if request.post?
        @adventure.liked_by current_user
     elsif request.delete?
        @adventure.unliked_by current_user
     end
   end
-  
+
   def downvote
-    if request.post? 
+    if request.post?
        @adventure.disliked_by current_user
     elsif request.delete?
        @adventure.undisliked_by current_user
     end
   end
 
-  # def upvote
-  #   @adventure.liked_by current_user
-  #   respond_to do |format|
-  #     format.html { redirect_to @adventure.parent }
-  #     format.js   {}
-  #   end
-  # end
-
-  # def downvote
-  #   @adventure.disliked_by current_user
-  #   respond_to do |format|
-  #     format.html { redirect_to @adventure.parent }
-  #     format.js   {}
-  #   end
-  # end
-
-  # def remove_upvote
-  #   @adventure.unliked_by current_user
-  #   respond_to do |format|
-  #     format.html { redirect_to @adventure.parent }
-  #     format.js   {}
-  #   end
-  # end
-
-  # def remove_downvote
-  #   @adventure.undisliked_by current_user
-  #   respond_to do |format|
-  #     format.html { redirect_to @adventure.parent }
-  #     format.js   {}
-  #   end
-  # end
-
   private
 
-    def set_adventure
-      @adventure = Adventure.find(params[:id])
-    end
+  def set_adventure
+    @adventure = Adventure.find(params[:id])
+  end
 
-    def adventure_params
-      params.require(:adventure).permit(:story, :choice, :parent_id, :user_id, :upload, :image)
-    end
+  def adventure_params
+    params.require(:adventure).permit(:story, :choice, :parent_id, :user_id, :upload, :image)
+  end
+
 end

@@ -23,9 +23,9 @@ gem 'acts_as_votable', '~> 0.10.0'
 # gem 'turbolinks'
 
 group :development do
-	gem 'sqlite3'
-  gem "better_errors"
-  gem "binding_of_caller"
+  gem 'sqlite3'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 
