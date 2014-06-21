@@ -5,8 +5,8 @@ class UploadsController < ApplicationController
     if @upload.save
       redirect_to :back
     else
-      redirect_to :back, alert: "Unable to upload."
-    end    
+      redirect_to :back, alert: 'Unable to upload.'
+    end
   end
 
   def destroy

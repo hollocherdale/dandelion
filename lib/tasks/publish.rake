@@ -1,6 +1,6 @@
 require 'rake'
 namespace :publish do
-  desc "Publish only popular adventures"
+  desc 'Publish only popular adventures'
   task :normal => :environment do
     Adventure.where(state: 'populated').each do |adventure|
       adventure.close
