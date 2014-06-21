@@ -58,15 +58,15 @@ class AdventuresController < ApplicationController
   end
 
   def upvote
-    if request.post? 
+    if request.post?
        @adventure.liked_by current_user
     elsif request.delete?
        @adventure.unliked_by current_user
     end
   end
-  
+
   def downvote
-    if request.post? 
+    if request.post?
        @adventure.disliked_by current_user
     elsif request.delete?
        @adventure.undisliked_by current_user
