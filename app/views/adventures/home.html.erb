@@ -3,6 +3,9 @@
 		<p>
 			<strong>Dandelion is in alpha realease. All information submitted here should be considered public. To contribute, visit <a href='https://github.com/hollocherDale/dandelion'>the github page</a></strong>
 	  </p>
+	  <p>
+	  	Since this is the alpha release, the database may be reset at any time. You have been warned!
+	  </p>
 		<% @adventures.each do |adventure| %>
 			<% if adventure.is_root? %>
 				<p class="adventure"><%= link_to adventure.story, adventure, :class => "button" %></p>
