@@ -75,11 +75,12 @@ class AdventuresController < ApplicationController
 
   private
 
-    def set_adventure
-      @adventure = Adventure.find(params[:id])
-    end
+  def set_adventure
+    @adventure = Adventure.find(params[:id])
+  end
 
-    def adventure_params
-      params.require(:adventure).permit(:story, :choice, :parent_id, :user_id, :upload, :image)
-    end
+  def adventure_params
+    params.require(:adventure).permit(:story, :choice, :parent_id, :user_id, :upload, :image)
+  end
+
 end
