@@ -13,8 +13,8 @@ class Adventure < ActiveRecord::Base
   belongs_to :user
   has_many :uploads, dependent: :destroy
   validates :user_id, presence: true
-  validates :story, presence: true
-  validates :choice, presence: true
+  validates :story, presence: true, length: { maximum: 2000 }
+  validates :choice, presence: true, length: { maximum: 140 }
 
   state_machine initial: :pending do
     event :archive do
@@ -23,6 +23,7 @@ class Adventure < ActiveRecord::Base
 
     event :publish do
       transition pending: :accepting_submissions
+
     end
 
     event :populate do
@@ -39,6 +40,12 @@ class Adventure < ActiveRecord::Base
 
     event :close do
       transition [:populated, :popular] => :closed
+    end
+  end
+
+  def single_path?
+    if self.path_limit == "single"
+      true
     end
   end
 

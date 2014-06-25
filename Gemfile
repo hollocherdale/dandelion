@@ -18,16 +18,14 @@ gem 'newrelic_rpm'
 gem 'figaro'
 gem 'rufus-scheduler'
 gem 'acts_as_votable', '~> 0.10.0'
-
-# turbolinks is causing ajax forms to load multiple times on a page
-# gem 'turbolinks'
+gem 'truncate_html', '0.9.2'
+gem 'draper', '~> 1.3'
 
 group :development do
   gem 'sqlite3'
   gem 'better_errors'
   gem 'binding_of_caller'
 end
-
 
 group :doc do
   gem 'sdoc', require: false

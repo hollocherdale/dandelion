@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140612211603) do
+ActiveRecord::Schema.define(version: 20140625153653) do
 
   create_table "adventures", force: true do |t|
     t.text     "story"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20140612211603) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "path_limit", default: "none"
   end
 
   add_index "adventures", ["ancestry"], name: "index_adventures_on_ancestry"
@@ -50,6 +51,7 @@ ActiveRecord::Schema.define(version: 20140612211603) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "admin",                  default: false
+    t.string   "name"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

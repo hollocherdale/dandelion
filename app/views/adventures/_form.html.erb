@@ -9,8 +9,10 @@
       </ul>
     </div>
   <% end %>
+  <%= select(:adventure, :path_limit, [['Dead End', 1], ['Single', 2]]) %>
   <%= f.hidden_field :parent_id, :value => params[:id] %>
-  <%= f.label :path %><br>
+  <%= f.label :path %>
+  <small>140 Characters max</small>
   <%= f.text_area :choice, :placeholder => "What path will lead to your story?", :required => true %>
   <%= f.label :story %><br>
   <%= f.text_area :story, :placeholder => "Your story", :required => true %>
