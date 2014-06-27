@@ -25,7 +25,8 @@ class AdventuresController < ApplicationController
   end
 
   def show
-    @adventures = Adventure.find(params[:id]).children
+    @adventure_submissions = Adventure.find(params[:id]).children
+    @adventure_choices = @adventure.children.with_states('accepting_submissions', 'populated', 'popular', 'closed')
   end
 
   def create

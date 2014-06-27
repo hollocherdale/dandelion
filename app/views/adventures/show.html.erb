@@ -28,26 +28,18 @@
     </div>
     <h4>Adventure Submissions</h4>
     <div class="row" id="submissions">
-      <% @adventures.each do |adventure| %>
+      <% @adventure_submissions.each do |adventure| %>
         <%= render 'adventure', adventure: adventure %>
       <% end %>
     </div>
   </div>
 <% else %>
   <div class="row choices">
-    <% @adventure.children.each do |child| %>
-      <% if child.is_only_child? %>
-        <%= link_to child do %>
-          <div class="small-12 small-centered columns choice">
-            <p><%= child.choice %></p>
-          </div>
-        <% end %>
-      <% else %>
-        <%= link_to child do %>
-          <div class="small-6 columns choice"> 
-            <p><%= child.choice %></p>
-          </div>
-        <% end %>
+    <% @adventure_choices.each do |adventure| %>
+      <%= link_to adventure do %>
+        <div class="small-6 columns choice"> 
+          <p><%= adventure.choice %></p>
+        </div>
       <% end %>
     <% end %>
   </div>
