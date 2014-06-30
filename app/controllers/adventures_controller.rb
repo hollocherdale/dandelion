@@ -7,6 +7,7 @@ class AdventuresController < ApplicationController
     @top_submissions = Adventure.where(state: 'pending').order(vote_count: :desc)
     @popular_adventures = Adventure.where(state: 'popular').order(vote_count: :desc)
     @unpopulated_adventures = Adventure.where(state: 'accepting_submissions').order(vote_count: :desc)
+    @home = true
   end
 
   def index

@@ -1,0 +1,14 @@
+<div class="submission" id="submission<%= adventure.id %>">
+  <div class="row">
+    <div class="small-12 columns">
+      <em><%= adventure.choice %></em><small> Posted <%= time_ago_in_words(adventure.created_at) %> ago by <%= adventure.user.name%>.</small>
+      <p>
+        <% if @home %>
+          <%= link_to 'See story', adventure_path(adventure) %>
+        <% else %>
+          <%= adventure.story %>
+        <% end %>
+      </p>
+    </div>
+  </div>
+</div>

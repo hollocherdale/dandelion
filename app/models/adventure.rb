@@ -23,7 +23,6 @@ class Adventure < ActiveRecord::Base
 
     event :publish do
       transition pending: :accepting_submissions
-
     end
 
     event :populate do
