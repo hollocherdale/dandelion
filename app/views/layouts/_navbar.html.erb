@@ -12,7 +12,7 @@
       <ul class='right'>
         <li class='active'><%= link_to 'About', about_path %></li>
         <li class='has-dropdown'>
-          <a href='#'>Join</a>
+          <a href='#'>Menu</a>
           <ul class='dropdown'>
             <% if user_signed_in? %>
               <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
