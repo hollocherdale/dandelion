@@ -3,7 +3,7 @@ require 'rails_helper'
 describe Adventure do
   let(:user) { FactoryGirl.create(:user) }
   before { @adventure = user.adventures.build(story: 'story', choice: 'choice') }
-  subject! { @adventure }
+  subject { @adventure }
 
   it { should respond_to(:story) }
   it { should respond_to(:choice) }
