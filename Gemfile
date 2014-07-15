@@ -14,7 +14,7 @@ gem 'ancestry'
 gem 'state_machine'
 gem 'paperclip', github: 'thoughtbot/paperclip'
 gem 'aws-sdk', '~> 1.0'
-gem 'newrelic_rpm'
+# gem 'newrelic_rpm'
 gem 'figaro'
 gem 'rufus-scheduler'
 gem 'acts_as_votable', '~> 0.10.0'
@@ -34,4 +34,9 @@ end
 group :production do
   gem 'pg', '0.15.1'
   gem 'rails_12factor'
+end
+
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0.0'
+  gem "factory_girl_rails", "~> 4.0"
 end
