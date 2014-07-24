@@ -10,6 +10,7 @@ class Adventure < ActiveRecord::Base
   acts_as_votable
   has_ancestry
 
+  belongs_to :adventure_collections
   belongs_to :user
   has_many :uploads, dependent: :destroy
   validates :user_id, presence: true

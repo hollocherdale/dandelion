@@ -1,0 +1,2 @@
+module AdventureCollectionsHelper
+end
