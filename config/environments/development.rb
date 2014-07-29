@@ -34,4 +34,5 @@ Dandelion::Application.configure do
       :secret_access_key => ENV['S3_SECRET_ACCESS_KEY']
     }
   }
+  Paperclip::Attachment.default_options[:s3_host_name] = 's3-us-east-1.amazonaws.com'
 end

@@ -77,7 +77,6 @@ Dandelion::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
-  Paperclip::Attachment.default_options[:s3_host_name] = 's3-us-west-2.amazonaws.com'
   config.paperclip_defaults = {
     :storage => :s3,
     :s3_credentials => {
@@ -86,4 +85,5 @@ Dandelion::Application.configure do
       :secret_access_key => ENV['S3_SECRET_ACCESS_KEY']
     }
   }
+  Paperclip::Attachment.default_options[:s3_host_name] = 's3-us-west-2.amazonaws.com'
 end
