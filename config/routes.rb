@@ -14,6 +14,5 @@ Dandelion::Application.routes.draw do
   
   root 'adventure_collections#home'
   match '/adventures/:id',  to: 'adventures#show',    via: 'get'
-  match '/about',           to: 'adventures#about',   via: 'get'	
-
+  match '/about',           to: 'adventures#about',   via: 'get'
 end

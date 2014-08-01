@@ -7,18 +7,19 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 1.2'
-
 gem 'devise'
 gem 'zurb-foundation'
 gem 'ancestry'
 gem 'state_machine'
 gem 'paperclip', github: 'thoughtbot/paperclip'
+gem 'newrelic_rpm'
 gem 'figaro'
 gem 'rufus-scheduler'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'truncate_html', '0.9.2'
 gem 'draper', '~> 1.3'
 gem 'aws-sdk', '1.5.7'
+gem 'rubocop', require: false
 
 group :development do
   gem 'sqlite3'

@@ -1,0 +1,21 @@
+AllCops:
+  Exclude:
+      - bin/**/*
+      - db/**/*
+      - script/**/*
+      - Rakefile
+      - Gemfile
+      - spec/support/sunspot.rb
+
+# Disable documentation cops
+Documentation:
+  Enabled: false
+
+Style/ClassLength:
+  Max: 125
+
+Style/MethodLength:
+  Max: 16
+
+Style/LineLength:
+  Max: 130
