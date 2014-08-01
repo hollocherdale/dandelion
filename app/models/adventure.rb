@@ -43,14 +43,11 @@ class Adventure < ActiveRecord::Base
   end
 
   def single_path?
-    if self.path_limit == "single"
-      true
-    end
+    return true if path_limit == 'single'
   end
 
-
-  def get_rank
-    self.get_likes.size - self.get_dislikes.size
+  def evaluate_rank
+    get_likes.size - get_dislikes.size
   end
 
   def get_vote_config(user)
@@ -61,7 +58,7 @@ class Adventure < ActiveRecord::Base
       downvote_image: DOWNVOTE_IMG
     }
 
-    return vote_config if !user.voted_for?(self)
+    return vote_config unless user.voted_for?(self)
 
     if user.voted_as_when_voted_for(self)
       vote_config[:upvote_method] = :delete

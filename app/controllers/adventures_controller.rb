@@ -1,6 +1,6 @@
 class AdventuresController < ApplicationController
   before_filter :authenticate_user!, except: [:home, :show, :about, :new]
-  before_action :set_adventure, only: [:show, :edit, :destroy, :vote, :upvote, :downvote, :remove_upvote, :remove_downvote]
+  before_action :set_adventure, except: [:new, :create]
 
   def home
     @adventures = Adventure.all
@@ -35,9 +35,7 @@ class AdventuresController < ApplicationController
     @adventure = current_user.adventures.build(adventure_params)
     respond_to do |format|
       if @adventure.save
-        if @adventure.only_child?
-          @adventure.parent.populate
-        end
+        @adventure.parent.populate if @adventure.only_child
         format.html { redirect_to @adventure.parent, notice: 'Adventure was successfully created.' }
         format.js   {}
       else
@@ -61,17 +59,17 @@ class AdventuresController < ApplicationController
 
   def upvote
     if request.post?
-       @adventure.liked_by current_user
+      @adventure.liked_by current_user
     elsif request.delete?
-       @adventure.unliked_by current_user
+      @adventure.unliked_by current_user
     end
   end
 
   def downvote
     if request.post?
-       @adventure.disliked_by current_user
+      @adventure.disliked_by current_user
     elsif request.delete?
-       @adventure.undisliked_by current_user
+      @adventure.undisliked_by current_user
     end
   end
 
@@ -84,5 +82,4 @@ class AdventuresController < ApplicationController
   def adventure_params
     params.require(:adventure).permit(:story, :choice, :parent_id, :user_id, :upload, :image)
   end
-
 end

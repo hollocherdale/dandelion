@@ -19,7 +19,7 @@ describe Adventure do
     context 'when published' do
       it 'should be accepting_submissions' do
         expect(subject.state).to eq('accepting_submissions')
-      end   
+      end
     end
 
     context 'when populated' do
@@ -27,14 +27,14 @@ describe Adventure do
 
       it 'should be accepting_submissions' do
         expect(subject.state).to eq('populated')
-      end   
+      end
 
       context 'when unpopulated' do
         before { subject.unpopulate }
 
         it 'should be accepting_submissions' do
           expect(subject.state).to eq('accepting_submissions')
-        end   
+        end
       end
 
       context 'when upvoted' do
@@ -42,7 +42,7 @@ describe Adventure do
 
         it 'should be accepting_submissions' do
           expect(subject.state).to eq('popular')
-        end   
+        end
       end
 
       context 'when closed' do
