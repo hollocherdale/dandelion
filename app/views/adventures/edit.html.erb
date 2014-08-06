@@ -16,7 +16,6 @@
 </div>
 
 <%if current_user.admin? || current_user.id == @adventure.user_id %>
-  <form>
     <div class='row'>
       <div class='small-12 columns'>
         <%= image_tag @upload.image, id:'image', class: 'image-preview' %>
@@ -27,15 +26,14 @@
           <%= form_for @upload, :html => { :multipart => true } do |f| %>
             <%= f.hidden_field :adventure_id, :value => @adventure.id %>
             <%= f.file_field :image, id:'upload_image', :required => true %>
-      </div>
-      <div class='small-4 columns'>
+<!--       </div> -->
+      <!-- <div class='small-4 columns'> -->
             <%= f.submit 'Add photo', data: { disable_with: 'Uploading...' } %>
           <% end %>
       </div>
       <div class='small-4 columns'>
       </div>
     </div>
-  </form>
 <% end %>
 
 <script>
