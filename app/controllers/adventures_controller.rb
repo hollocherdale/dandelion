@@ -1,6 +1,6 @@
 class AdventuresController < ApplicationController
   before_filter :authenticate_user!, except: [:home, :show, :about, :new]
-  before_action :set_adventure, except: [:new, :create]
+  before_action :set_adventure, except: [:home, :new, :create]
 
   def home
     @adventures = Adventure.all
