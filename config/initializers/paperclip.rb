@@ -8,4 +8,4 @@ Paperclip::Attachment.default_options.merge!({
                    :s3_permissions => 'private',
                    :url => ":s3_domain_url",
                    :s3_host_name => 's3-us-west-2.amazonaws.com'
-                 }
+                 })
