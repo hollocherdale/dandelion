@@ -1,29 +1,32 @@
-<div class="row">
-  <div class="small-12 columns">
+<div class='row'>
+  <div class='small-12 columns'>
     <p>
       <strong>Dandelion is in alpha realease. All information submitted here should be considered public. To contribute, visit <a href='https://github.com/hollocherDale/dandelion'>the github page</a></strong>
     </p>
     <p>
       Since this is the alpha release, the database may be reset at any time. You have been warned!
     </p>
-    <% @adventures.each do |adventure| %>
-      <% if adventure.is_root? %>
-        <p class="adventure"><%= link_to adventure.story, adventure, :class => "button" %></p>
-      <% end %>
+    <% @adventure_collections.each do |collection| %>
+      <div class='row'>
+        <div class='small-12 columns'>
+          <h3><%= collection.title %></h3>
+          <%= collection.banner %>
+        </div>
+      </div>
     <% end %>
     <% unless @top_submissions.blank? %>
       <h3>Submissions</h3>
       <% @top_submissions.each do |adventure| %>
-        <div class="row">
-          <%= render 'summary', adventure: adventure.parent %>
+        <div class='row'>
+          <%= render 'adventures/summary', adventure: adventure.parent %>
         </div>
       <% end %>
     <% end %>
     <% unless @unpopulated_adventures.blank? %>
       <h3>Unpopulated Adventures</h3>
       <% @unpopulated_adventures.each do |adventure| %>
-        <div class="row">
-          <%= render 'summary', adventure: adventure %>
+        <div class='row'>
+          <%= render 'adventures/summary', adventure: adventure %>
         </div>
       <% end %>
     <% end %>
