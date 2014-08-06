@@ -1,14 +1,6 @@
 class AdventuresController < ApplicationController
   before_filter :authenticate_user!, except: [:home, :show, :about, :new]
-  before_action :set_adventure, except: [:home, :new, :create]
-
-  def home
-    @adventures = Adventure.all
-    @top_submissions = Adventure.where(state: 'pending').order(vote_count: :desc)
-    @popular_adventures = Adventure.where(state: 'popular').order(vote_count: :desc)
-    @unpopulated_adventures = Adventure.where(state: 'accepting_submissions').order(vote_count: :desc)
-    @home = true
-  end
+  before_action :set_adventure, except: [:index, :new, :create]
 
   def index
     @adventures = Adventure.scoped
