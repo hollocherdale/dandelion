@@ -9,8 +9,9 @@ Dandelion::Application.routes.draw do
   end
 
   resources :uploads, :only => [:create, :destroy]
+  resources :adventure_collections
 
-  root 'adventures#home'
+  root 'adventure_collections#home'
   match '/adventures/:id',  to: 'adventures#show',    via: 'get'
   match '/about',           to: 'adventures#about',   via: 'get'
 end
