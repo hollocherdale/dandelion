@@ -12,7 +12,7 @@
   <div class="small-12 large-8 small-centered columns story">
     <p class="adventure"><%= @adventure.story %></p>
     <% @adventure.uploads.each do |upload| %>
-      <%= image_tag upload.image(:medium) %>
+      <%= image_tag upload.image(:large) %>
     <% end %>
   </div>
 </div>

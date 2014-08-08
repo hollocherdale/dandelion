@@ -1,11 +1,12 @@
 class UploadsController < ApplicationController
   def create
-    @upload = Upload.new(upload_params)
-    if @upload.save
-      redirect_to :back
-    else
-      redirect_to :back, alert: 'Unable to upload.'
-    end
+    # @upload = Upload.new(upload_params)
+    # if @upload.save
+    #   redirect_to :back
+    # else
+    #   redirect_to :back, alert: 'Unable to upload.'
+    # end
+    redirect_to :back, alert: 'Image uploading disabled at this time.'
   end
 
   def destroy
