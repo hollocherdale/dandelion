@@ -10,17 +10,16 @@ class AdventureCollectionsController < ApplicationController
   end
 
   def create
-    @adventure_collections = AdventureCollection.create( adventure_collection_params )
-    redirect_to :root
+    @adventure_collection = current_user.adventure_collections.build(adventure_collection_params)
+    if @adventure_collection.save
+      redirect_to @adventure_collection
+    else
+      redirect_to new, 
+      flash[:error] = 'Sorry, there was an error.'
+    end
   end
 
   def show
-  end
-
-  def edit
-  end
-
-  def update
   end
 
   def destroy

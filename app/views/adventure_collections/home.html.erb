@@ -9,8 +9,8 @@
     <% @adventure_collections.each do |collection| %>
       <div class='row'>
         <div class='small-12 columns'>
-          <h3><%= collection.title %></h3>
-          <%= collection.banner %>
+          <h4><%= collection.title %></h4>
+          <%= image_tag(collection.banner(:large), class: 'banner') %>
         </div>
       </div>
     <% end %>

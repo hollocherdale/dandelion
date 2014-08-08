@@ -4,3 +4,10 @@
     <%= @adventure_collection.banner %>
   </div>
 </div>
+<div class="row">
+  <div class="small-12 large-8 small-centered columns">
+    <% if @adventure_collection.adventures.blank? %>
+      <%= link_to 'Add a story', new_adventure_path, :class => "button" %>
+    <% end %>
+  </div>
+</div>
