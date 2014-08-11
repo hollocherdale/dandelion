@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Adventure do
   let(:user) { FactoryGirl.create(:user) }
-  before { @adventure = user.adventures.build(story: 'story', choice: 'choice') }
+  before { @adventure = user.adventures.build(story: 'story', choice: 'choice', adventure_collection_id: 1) }
   subject { @adventure }
 
   it { should respond_to(:story) }
