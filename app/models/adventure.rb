@@ -14,7 +14,7 @@ class Adventure < ActiveRecord::Base
   belongs_to :adventure_collection
   has_many :uploads, dependent: :destroy
   validates :user_id, presence: true
-  # validates :adventure_collection_id, presence: true
+  validates :adventure_collection_id, presence: true
   validates :story, presence: true, length: { maximum: 2000 }
   validates :choice, presence: true, length: { maximum: 140 }
 

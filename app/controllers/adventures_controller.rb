@@ -1,6 +1,6 @@
 class AdventuresController < ApplicationController
   before_filter :authenticate_user!, except: [:home, :show, :about, :new]
-  before_action :set_adventure, except: [:index, :new, :create]
+  before_action :set_adventure, except: [:index, :new, :create, :seed, :about]
 
   def index
     @adventures = Adventure.scoped
@@ -27,8 +27,8 @@ class AdventuresController < ApplicationController
     @adventure = current_user.adventures.build(adventure_params)
     respond_to do |format|
       if @adventure.save
-        @adventure.parent.populate if @adventure.only_child
-        format.html { redirect_to @adventure.parent, notice: 'Adventure was successfully created.' }
+        @adventure.parent.populate if @adventure.is_only_child?
+        format.html { redirect_to @adventure.adventure_collection, notice: 'Adventure was successfully created.' }
         format.js   {}
       else
         format.html { render action: 'new' }
@@ -65,6 +65,11 @@ class AdventuresController < ApplicationController
     end
   end
 
+  def seed
+    @adventure = Adventure.new
+    @adventure_collection = AdventureCollection.find(params[:id])
+  end
+
   private
 
   def set_adventure
@@ -72,6 +77,6 @@ class AdventuresController < ApplicationController
   end
 
   def adventure_params
-    params.require(:adventure).permit(:story, :choice, :parent_id, :user_id, :upload, :image)
+    params.require(:adventure).permit(:story, :choice, :parent_id, :user_id, :upload, :image, :adventure_collection_id)
   end
 end

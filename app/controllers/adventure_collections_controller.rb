@@ -12,9 +12,9 @@ class AdventureCollectionsController < ApplicationController
   def create
     @adventure_collection = current_user.adventure_collections.build(adventure_collection_params)
     if @adventure_collection.save
-      redirect_to @adventure_collection
+      redirect_to seed_new_adventure_path(:id => @adventure_collection.id)
     else
-      redirect_to new, 
+      redirect_to new
       flash[:error] = 'Sorry, there was an error.'
     end
   end
@@ -24,7 +24,7 @@ class AdventureCollectionsController < ApplicationController
 
   def destroy
     @adventure_collection.destroy
-    redirect_to @adventure_collection
+    redirect_to root_url
   end
 
   def new

@@ -7,7 +7,7 @@
 <div class="row">
   <div class="small-12 large-8 small-centered columns">
     <% if @adventure_collection.adventures.blank? %>
-      <%= link_to 'Add a story', new_adventure_path, :class => "button" %>
+      <%= link_to 'Add a story', new_adventure_path, :id => "new_link", :class => "button", remote: true  %>
     <% end %>
   </div>
 </div>
