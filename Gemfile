@@ -17,14 +17,13 @@ gem 'figaro'
 gem 'rufus-scheduler'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'truncate_html', '0.9.2'
-gem 'draper', '~> 1.3'
 gem 'aws-sdk', '1.5.7'
-gem 'rubocop', require: false
 
 group :development do
   gem 'sqlite3'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'rubocop', require: false
 end
 
 group :doc do

@@ -1,6 +1,6 @@
 class AdventuresController < ApplicationController
   before_filter :authenticate_user!, except: [:home, :show, :about, :new]
-  before_action :set_adventure, except: [:new, :create]
+  before_action :set_adventure, except: [:new, :create, :about]
 
   def index
     @adventures = Adventure.scoped
@@ -27,7 +27,7 @@ class AdventuresController < ApplicationController
     @adventure = current_user.adventures.build(adventure_params)
     respond_to do |format|
       if @adventure.save
-        @adventure.parent.populate if @adventure.only_child
+        @adventure.parent.populate if @adventure.is_only_child?
         format.html { redirect_to @adventure.parent, notice: 'Adventure was successfully created.' }
         format.js   {}
       else
@@ -41,7 +41,7 @@ class AdventuresController < ApplicationController
   end
 
   def destroy
-    @adventure.parent.unpopulate if @adventure.only_child?
+    @adventure.parent.unpopulate if @adventure.is_only_child?
     @adventure.destroy
     respond_to do |format|
       format.html { redirect_to :back }
