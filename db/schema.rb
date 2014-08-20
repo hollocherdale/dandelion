@@ -11,9 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140808190023) do
+ActiveRecord::Schema.define(version: 20140820210759) do
 
-  create_table "adventure_collections", force: true do |t|
+  create_table "books", force: true do |t|
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20140808190023) do
     t.integer  "user_id"
   end
 
-  create_table "adventures", force: true do |t|
+  create_table "chapters", force: true do |t|
     t.text     "story"
     t.text     "choice"
     t.string   "state"
@@ -33,14 +33,14 @@ ActiveRecord::Schema.define(version: 20140808190023) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "path_limit",              default: "none"
-    t.integer  "adventure_collection_id"
+    t.string   "path_limit", default: "none"
+    t.integer  "book_id"
   end
 
-  add_index "adventures", ["ancestry"], name: "index_adventures_on_ancestry"
+  add_index "chapters", ["ancestry"], name: "index_chapters_on_ancestry"
 
   create_table "uploads", force: true do |t|
-    t.integer  "adventure_id"
+    t.integer  "chapter_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image_file_name"

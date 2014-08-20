@@ -1,0 +1,46 @@
+<% provide(:title, 'Chapter') %>
+
+<% if @chapter.parent %>
+  <div class="row">
+    <div class="small-6 column backstory">
+      <%= link_to 'Backstory', @chapter.parent %>
+    </div>
+  </div>
+<% end %>
+
+<div class="row">
+  <div class="small-12 large-8 small-centered columns story">
+    <p class="chapter"><%= @chapter.story %></p>
+    <% @chapter.uploads.each do |upload| %>
+      <%= image_tag upload.image(:medium) %>
+    <% end %>
+  </div>
+</div>
+
+<% if @chapter.accepting_submissions? || @chapter.populated? || @chapter.popular? %>
+  <div class="row">
+    <div class="small-12 large-8 small-centered columns">
+      <% if user_signed_in? %>
+        <%= link_to 'Add a story', new_chapter_path(:id => @chapter.id), :id => "new_link", :class => "button", remote: true %>
+      <% else %>
+        <p>Please sign-in to submit a story and vote</p>
+      <% end %>
+    </div>
+    <h4>Submissions</h4>
+    <div class="row" id="submissions">
+      <% @chapter_submissions.each do |chapter| %>
+        <%= render 'chapter', chapter: chapter %>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+  <div class="row choices">
+    <% @chapter_choices.each do |chapter| %>
+      <%= link_to chapter do %>
+        <div class="small-6 columns choice"> 
+          <p><%= chapter.choice %></p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

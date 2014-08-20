@@ -1,0 +1,8 @@
+<% provide(:title, 'Seed book') %>
+<% if user_signed_in? %>
+  <div class="form">
+    <%= render 'seed_form' %>
+  </div>
+<% else %>
+  <h4> Please sign in to submit your story and vote.</h4>
+<% end %>

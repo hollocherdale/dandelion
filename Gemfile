@@ -12,19 +12,18 @@ gem 'zurb-foundation'
 gem 'ancestry'
 gem 'state_machine'
 gem 'paperclip', github: 'thoughtbot/paperclip'
-gem 'aws-sdk', '~> 1.0'
 gem 'newrelic_rpm'
 gem 'figaro'
 gem 'rufus-scheduler'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'truncate_html', '0.9.2'
-gem 'draper', '~> 1.3'
-gem 'rubocop', require: false
+gem 'aws-sdk', '1.5.7'
 
 group :development do
   gem 'sqlite3'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'rubocop', require: false
 end
 
 group :doc do

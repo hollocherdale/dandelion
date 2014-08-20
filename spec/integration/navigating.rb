@@ -1,2 +1,2 @@
-describe 'navigating through adventure' do
+describe 'navigating through chapter' do
 

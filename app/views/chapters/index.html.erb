@@ -1,0 +1,4 @@
+<div class="row">
+  <%= link_to "New Root Adventure", new_chapter_path %>
+  <%= nested_chapters @chapters.arrange(:order => :created_at) %>
+</div>
