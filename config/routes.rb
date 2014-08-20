@@ -3,16 +3,17 @@ Dandelion::Application.routes.draw do
 
   resources :chapters do
     member do
-      match :upvote, via: [:post, :delete]
+      match :upvote,   via: [:post, :delete]
       match :downvote, via: [:post, :delete]
     end
+    get 'seed',          on: :new
+    post 'create_seed',  on: :new
   end
 
   resources :uploads, :only => [:create, :destroy]
-
   resources :books
-  
+
   root 'books#home'
-  match '/chapters/:id',  to: 'chapters#show',    via: 'get'
+  match '/chapters/:id',    to: 'chapters#show',    via: 'get'
   match '/about',           to: 'chapters#about',   via: 'get'
 end

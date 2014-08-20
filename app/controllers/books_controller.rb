@@ -10,11 +10,21 @@ class BooksController < ApplicationController
   end
 
   def create
-    @books = Book.create( book_params )
-    redirect_to :root
+    @book = current_user.books.build(book_params)
+    if @book.save
+      redirect_to @book
+    else
+      redirect_to new_book_path
+      flash[:error] = 'Something broke!'
+    end
   end
 
   def show
+    if @book.has_no_seed
+      redirect_to seed_new_chapter_path(:id => @book.id)
+    else
+      redirect_to @book.first_adventure
+    end
   end
 
   def edit
@@ -25,7 +35,7 @@ class BooksController < ApplicationController
 
   def destroy
     @book.destroy
-    redirect_to @book
+    redirect_to :root
   end
 
   def new

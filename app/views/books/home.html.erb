@@ -6,11 +6,14 @@
     <p>
       Since this is the alpha release, the database may be reset at any time. You have been warned!
     </p>
-    <% @books.each do |cook| %>
+    <% @books.each do |book| %>
       <div class='row'>
         <div class='small-12 columns'>
-          <h3><%= cook.title %></h3>
-          <%= cook.banner %>
+          <h3><%= book.title %></h3>
+          <%= book.banner %>
+          <%if current_user.admin? || current_user.id == book.user_id %>
+             <%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
         </div>
       </div>
     <% end %>
@@ -18,7 +21,7 @@
       <h3>Submissions</h3>
       <% @top_submissions.each do |chapter| %>
         <div class='row'>
-          <%= render 'chapters/summary', chapter: chapter.parent %>
+          <%= render 'chapters/summary', chapter: chapter %>
         </div>
       <% end %>
     <% end %>

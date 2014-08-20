@@ -3,5 +3,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :chapters
+  has_many :books
   acts_as_voter
 end

@@ -1,4 +1,4 @@
-<%= form_for @chapter, remote: true do |f| %>
+<%= form_for @chapter, url: {action: "create_seed"} do |f| %>
   <% if @chapter.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@chapter.errors.count, "error") %> prohibited this chapter from being saved:</h2>
@@ -9,11 +9,10 @@
       </ul>
     </div>
   <% end %>
-  <%= f.hidden_field :parent_id, :value => params[:id] %>
-  <%= f.hidden_field :book_id, :value => @chapter.book_id %>
+  <%= f.hidden_field :book_id, :value => params[:id] %>
   <%= f.label :path %>
   <small>140 Characters max</small>
-  <%= f.text_area :choice, :placeholder => "What path will lead to your story?", :required => true %>
+  <%= f.text_area :choice, :placeholder => "What's the hook for your book?", :required => true %>
   <%= f.label :story %><br>
   <%= f.text_area :story, :placeholder => "Your story", :required => true %>
   <div class="actions">

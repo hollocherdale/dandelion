@@ -1,6 +1,6 @@
 class ChaptersController < ApplicationController
   before_filter :authenticate_user!, except: [:home, :show, :about, :new]
-  before_action :set_chapter, except: [:new, :create, :about]
+  before_action :set_chapter, except: [:new, :create, :about, :seed, :create_seed]
 
   def index
     @chapters = Chapter.scoped
@@ -23,7 +23,6 @@ class ChaptersController < ApplicationController
   end
 
   def create
-    @user = current_user
     @chapter = current_user.chapters.build(chapter_params)
     respond_to do |format|
       if @chapter.save
@@ -34,6 +33,20 @@ class ChaptersController < ApplicationController
         format.html { render action: 'new' }
       end
     end
+  end
+
+  def create_seed
+    @chapter = current_user.chapters.build(chapter_params)
+    if @chapter.save
+      @chapter.publish
+      redirect_to @chapter
+    else
+      flash[:error] = 'Something broke!'
+    end
+  end
+
+  def seed
+    @chapter = Chapter.new
   end
 
   def edit
@@ -72,6 +85,6 @@ class ChaptersController < ApplicationController
   end
 
   def chapter_params
-    params.require(:chapter).permit(:story, :choice, :parent_id, :user_id, :upload, :image)
+    params.require(:chapter).permit(:story, :choice, :parent_id, :user_id, :book_id, :upload, :image)
   end
 end
