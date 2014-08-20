@@ -1,0 +1,8 @@
+<% provide(:title, 'Add chapters') %>
+<% if user_signed_in? %>
+  <div class="form">
+    <%= render 'form' %>
+  </div>
+<% else %>
+  <h4> Please sign in to submit your story and vote.</h4>
+<% end %>

@@ -1,7 +1,7 @@
 Dandelion::Application.routes.draw do
   devise_for :users
 
-  resources :adventures do
+  resources :chapters do
     member do
       match :upvote, via: [:post, :delete]
       match :downvote, via: [:post, :delete]
@@ -10,9 +10,9 @@ Dandelion::Application.routes.draw do
 
   resources :uploads, :only => [:create, :destroy]
 
-  resources :adventure_collections
+  resources :books
   
-  root 'adventure_collections#home'
-  match '/adventures/:id',  to: 'adventures#show',    via: 'get'
-  match '/about',           to: 'adventures#about',   via: 'get'
+  root 'books#home'
+  match '/chapters/:id',  to: 'chapters#show',    via: 'get'
+  match '/about',           to: 'chapters#about',   via: 'get'
 end

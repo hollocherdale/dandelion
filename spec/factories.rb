@@ -5,7 +5,7 @@ FactoryGirl.define do
     password 'asdfasdf'
   end
 
-  factory :adventure do
+  factory :chapter do
     story 'story'
     choice 'choice'
     user

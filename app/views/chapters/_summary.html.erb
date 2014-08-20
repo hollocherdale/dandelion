@@ -1,0 +1,14 @@
+<div class="submission" id="submission<%= chapter.id %>">
+  <div class="row">
+    <div class="small-12 columns">
+      <em><%= chapter.choice %></em><small> Posted <%= time_ago_in_words(chapter.created_at) %> ago by <%= chapter.user.name%>.</small>
+      <p>
+        <% if @home %>
+          <%= link_to 'See story', chapter_path(chapter) %>
+        <% else %>
+          <%= chapter.story %>
+        <% end %>
+      </p>
+    </div>
+  </div>
+</div>

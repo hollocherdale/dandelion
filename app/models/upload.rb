@@ -1,5 +1,5 @@
 class Upload < ActiveRecord::Base
-  belongs_to :adventure
+  belongs_to :chapter
   has_attached_file :image,
                     styles: {
                     medium:   '500x500>',

@@ -11,14 +11,14 @@ User.create!(
   name: 'user'
 )
 
-Adventure.create!(
+Chapter.create!(
   choice:   'There is no choice',
   story:     'This is the beginning of our story. You stand on a hill in a plain. In the distance you see a village and a cave.',
   user_id:    1,
   state:    'closed'
 )
 
-Adventure.create!(
+Chapter.create!(
   choice:     'Enter the cave.',
   story:       'It is dark.',
   ancestry:     1,
@@ -27,7 +27,7 @@ Adventure.create!(
   user_id:     1
 )
 
-Adventure.create!(
+Chapter.create!(
   choice:     'Go to the village.',
   story:       'No one is here.',
   ancestry:     1,
