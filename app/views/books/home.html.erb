@@ -12,7 +12,7 @@
         <div class='small-12 columns'>
           <h5><%= book.title %></h5>
           <% unless book.banner.blank? %>
-            <%= book.banner %>
+            <%= image_tag book.banner, class: 'banner' %>
           <% end %>
           <div class='row'>
             <%= render 'chapters/summary', chapter: book.first_chapter %>
