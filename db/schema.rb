@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140821150956) do
+ActiveRecord::Schema.define(version: 20140820210759) do
 
   create_table "books", force: true do |t|
     t.string   "title"
@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(version: 20140821150956) do
     t.integer  "banner_file_size"
     t.datetime "banner_updated_at"
     t.integer  "user_id"
-    t.text     "description"
   end
 
   create_table "chapters", force: true do |t|

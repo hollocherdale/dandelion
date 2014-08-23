@@ -1,12 +1,8 @@
-<div class="row">
-  <div class="small-10 columns">
-    <% provide(:title, 'First Chapter') %>
-    <% if user_signed_in? %>
-      <div class="form">
-        <%= render 'seed_form' %>
-      </div>
-    <% else %>
-      <h4> Please sign in to add the first chapter to this book.</h4>
-    <% end %>
+<% provide(:title, 'Seed book') %>
+<% if user_signed_in? %>
+  <div class="form">
+    <%= render 'seed_form' %>
   </div>
-</div>
+<% else %>
+  <h4> Please sign in to submit your story and vote.</h4>
+<% end %>
