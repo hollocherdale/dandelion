@@ -17,11 +17,11 @@ Book.create!(
 )
 
 Chapter.create!(
-  choice:   'There is no choice',
-  story:     'This is the beginning of our story. You stand on a hill in a plain. In the distance you see a village and a cave.',
+  choice:     'There is no choice',
+  story:      'This is the beginning of our story. You stand on a hill in a plain. In the distance you see a village and a cave.',
   user_id:    1,
-  state:    'closed',
-  book_id: 1
+  state:      'closed',
+  book_id:    1
   
 )
 
@@ -32,7 +32,7 @@ Chapter.create!(
   state:      'accepting_submissions',
   path_limit: 'none',
   user_id:     1,
-  book_id: 1
+  book_id:     1
 )
 
 Chapter.create!(
@@ -42,5 +42,5 @@ Chapter.create!(
   state:      'accepting_submissions',
   path_limit: 'none',
   user_id:     1,
-  book_id: 1
+  book_id:     1
 )
