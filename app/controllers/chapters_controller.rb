@@ -39,6 +39,7 @@ class ChaptersController < ApplicationController
     @chapter = current_user.chapters.build(chapter_params)
     if @chapter.save
       @chapter.publish
+      @chapter.book.publish
       redirect_to @chapter
     else
       flash[:error] = 'Something broke!'

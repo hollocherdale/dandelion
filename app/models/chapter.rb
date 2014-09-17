@@ -3,7 +3,6 @@ require 'state_machine'
 class Chapter < ActiveRecord::Base
   UPVOTE_IMG = 'upvote.png'
   DOWNVOTE_IMG = 'downvote.png'
-
   UPVOTED_IMG = 'upvoted.png'
   DOWNVOTED_IMG = 'downvoted.png'
 

@@ -2,7 +2,7 @@ class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :destroy]
 
   def home
-    @books = Book.all
+    @books = Book.where(state: 'published')
     @top_submissions = Chapter.where(state: 'pending').order(vote_count: :desc)
     @popular_chapters = Chapter.where(state: 'popular').order(vote_count: :desc)
     @unpopulated_chapters = Chapter.where(state: 'accepting_submissions').order(vote_count: :desc)

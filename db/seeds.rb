@@ -14,6 +14,7 @@ User.create!(
 Book.create!(
   user_id:    1,
   title:      'seed story',
+  state:      'published'
 )
 
 Chapter.create!(

@@ -1,45 +1,52 @@
 <div class='row'>
-  <div class='small-12 columns'>
-    <p>
-      <strong>Dandelion is in alpha realease. All information submitted here should be considered public. To contribute, visit <a href='https://github.com/hollocherDale/dandelion'>the github page</a></strong>
-    </p>
-    <p>
-      Since this is the alpha release, the database may be reset at any time. You have been warned!
-    </p>
-    <h3>Books</h3>
-    <% @books.each do |book| %>
-      <div class='row'>
-        <div class='small-12 columns'>
-          <h5><%= book.title %></h5>
-          <% unless book.banner.blank? %>
-            <%= image_tag book.banner, class: 'banner' %>
-          <% end %>
-          <div class='row'>
-            <%= render 'chapters/summary', chapter: book.first_chapter %>
-          </div>
-          <% if user_signed_in? %>
-            <% if current_user.admin? || current_user.id == book.user_id %>
-               <%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
-    <% end %>
-    <% unless @top_submissions.blank? %>
-      <h3>Chapters needing submissions</h3>
-      <% @top_submissions.each do |chapter| %>
-        <div class='row'>
-          <%= render 'chapters/summary', chapter: chapter %>
-        </div>
-      <% end %>
-    <% end %>
-    <% unless @unpopulated_chapters.blank? %>
-      <h3>Unpopulated Stories</h3>
-      <% @unpopulated_chapters.each do |chapter| %>
-        <div class='row'>
-          <%= render 'chapters/summary', chapter: chapter %>
-        </div>
-      <% end %>
-    <% end %>
-  </div>
+	<div class='small-12 columns'>
+		<p>
+			<strong>
+				Dandelion is in alpha realease. All information submitted here should be considered public. To contribute, visit <a href='https://github.com/hollocherDale/dandelion'>the github page</a>
+			</strong>
+		</p>
+		<p>
+			Since this is the alpha release, the database may be reset at any time. You have been warned!
+		</p>
+		<h3>Books</h3>
+		<% @books.each do |book| %>
+			<div class='row'>
+				<div class='small-12 columns'>
+					<h5>
+						<%= book.title %>
+						<small> 
+							<% if user_signed_in? %>
+								<% if current_user.admin? || current_user.id == book.user_id %>
+									 <%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?! This cannot be undone!' } %>
+								<% end %>
+							<% end %>
+						</small>
+					</h5>
+					<% unless book.banner.blank? %>
+						<%= image_tag book.banner, class: 'banner' %>
+					<% end %>
+					<div class='row'>
+						<%= render 'chapters/summary', chapter: book.first_chapter %>
+					</div>
+
+				</div>
+			</div>
+		<% end %>
+		<% unless @top_submissions.blank? %>
+			<h3>Chapters needing submissions</h3>
+			<% @top_submissions.each do |chapter| %>
+				<div class='row'>
+					<%= render 'chapters/summary', chapter: chapter %>
+				</div>
+			<% end %>
+		<% end %>
+		<% unless @unpopulated_chapters.blank? %>
+			<h3>Unpopulated Stories</h3>
+			<% @unpopulated_chapters.each do |chapter| %>
+				<div class='row'>
+					<%= render 'chapters/summary', chapter: chapter %>
+				</div>
+			<% end %>
+		<% end %>
+	</div>
 </div>

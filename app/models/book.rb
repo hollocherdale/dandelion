@@ -1,11 +1,11 @@
+require 'state_machine'
+
 class Book < ActiveRecord::Base
   has_many :chapters, dependent: :destroy
-  # missing_url = ENV['S3_BUCKET_PATH'] + ENV['S3_BUCKET_NAME'] + '/banners/missing.png'
   has_attached_file :banner,
                     styles: {
                     large:    '1500x400>',
                     thumb:    '100x100>'},
-                    # default_url: missing_url,
                     :storage => :s3
   validates_attachment_content_type :banner, :content_type => /\Aimage\/.*\Z/
 
@@ -16,6 +16,13 @@ class Book < ActiveRecord::Base
   	  false
   	end
   end
+
+  state_machine initial: :pending do
+    event :publish do
+      transition pending: :published
+    end
+  end
+
 
   def first_chapter
   	self.chapters.all[0]
