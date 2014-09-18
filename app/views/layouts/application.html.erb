@@ -1,34 +1,20 @@
 <!DOCTYPE html>
-<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
-<!--[if lt IE 7 ]> <html class="ie6" lang="en"> <![endif]-->
-<!--[if IE 7 ]>    <html class="ie7" lang="en"> <![endif]-->
-<!--[if IE 8 ]>    <html class="ie8" lang="en"> <![endif]-->
-<!--[if IE 9 ]>    <html class="ie9" lang="en"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+<html>
   <head>
-    <meta charset="utf-8" />
-
-    <!-- Uncomment to make IE8 render like IE7 -->
-    <!-- <meta http-equiv="X-UA-Compatible" content="IE=7" /> -->
-
-    <!-- Set the viewport width to device width for mobile -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <title><%= full_title(yield(:title)) %></title>
-    <%= favicon_link_tag 'fav_icon.jpg' %>
-    <%= stylesheet_link_tag    "application" %>
-    <%= javascript_include_tag "vendor/custom.modernizr" %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "Dandelion" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Dandelion" %>">
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
-    <%= javascript_include_tag "application" %>
   </head>
   <body>
-    <%= render 'layouts/navbar' %>
-    <div class="row">
-      <% flash.each do |name, msg| %>
-         <%= content_tag :div, msg, class: "alert-box #{name}" %>
-      <% end %>
-    </div>
-    <%= yield %>
-    <%= render 'layouts/footer' %>
+    <header>
+      <%= render 'layouts/navigation' %>
+    </header>
+    <main role="main">
+       <%= render 'layouts/messages' %>
+       <%= yield %>
+    </main>
   </body>
 </html>
