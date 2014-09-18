@@ -20,8 +20,10 @@
         <% else %>
           <%= chapter.story %>
         <% end %>
-        <%if current_user.admin? || current_user.id == chapter.user_id %>
-           | <%= link_to 'Destroy', chapter, method: :delete, data: { confirm: 'Are you sure?' }, data: { remote: true } %>
+        <% if user_signed_in? %>
+          <%if current_user.admin? || current_user.id == chapter.user_id %>
+             | <%= link_to 'Destroy', chapter, method: :delete, data: { confirm: 'Are you sure?' }, data: { remote: true } %>
+          <% end %>
         <% end %>
       </p>
     </div>
