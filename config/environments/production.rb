@@ -80,9 +80,21 @@ Dandelion::Application.configure do
   config.paperclip_defaults = {
     :storage => :s3,
     :s3_credentials => {
-      :bucket => ENV['S3_BUCKET_NAME'],
-      :access_key_id => ENV['S3_ACCESS_KEY_ID'],
-      :secret_access_key => ENV['S3_SECRET_ACCESS_KEY']
+      bucket: ENV['S3_BUCKET_NAME'],
+      access_key_id: ENV['S3_ACCESS_KEY_ID'],
+      secret_access_key: ENV['S3_SECRET_ACCESS_KEY']
     }
   }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.default_url_options = { host: dandelion.herokuapp.com }
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.gmail.com', 
+    port: 587,
+    enable_starttls_auto: true,
+    user_name: ENV['GMAIL_USERNAME'],
+    password: ENV['GMAIL_PASSWORD'],
+    authentication: :plain,
+  }
+  
 end

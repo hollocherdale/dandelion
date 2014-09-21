@@ -18,6 +18,10 @@ gem 'rufus-scheduler'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'truncate_html', '0.9.2'
 gem 'aws-sdk', '1.5.7'
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+
 
 group :development do
   gem 'sqlite3'

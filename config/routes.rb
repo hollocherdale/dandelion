@@ -1,5 +1,5 @@
 Dandelion::Application.routes.draw do
-  devise_for :users
+  devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
 
   resources :chapters do
     member do
@@ -16,4 +16,5 @@ Dandelion::Application.routes.draw do
   root 'books#home'
   match '/chapters/:id',    to: 'chapters#show',    via: 'get'
   match '/about',           to: 'chapters#about',   via: 'get'
+  match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
 end
