@@ -1,0 +1,8 @@
+<% if current_user.admin? %>
+	<% @users.each do |user| %>
+		<p id='user<%= user.id %>'>
+			<%= user.name %>
+			<%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?! This cannot be undone!' }, remote: true %>
+		</p>
+	<% end %>
+<% end %>

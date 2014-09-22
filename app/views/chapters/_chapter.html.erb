@@ -1,18 +1,18 @@
-<div class="submission" id="submission<%= chapter.id %>">
-  <div class="row">
-    <div class="small-1 columns">
+<div class='submission' id='submission<%= chapter.id %>'>
+  <div class='row'>
+    <div class='small-1 columns'>
       <% if user_signed_in? %>
-        <ul class="inline-list" id="chapter_list<%= chapter.id %>" data-rank="<%= chapter.evaluate_rank %>">
+        <ul class='inline-list' id='chapter_list<%= chapter.id %>' data-rank='<%= chapter.evaluate_rank %>'>
           <li>
             <% vote_config = chapter.get_vote_config(current_user) %>
-            <%= link_to image_tag(vote_config[:upvote_image], size: '18'), upvote_chapter_path(chapter), method: vote_config[:upvote_method], remote: true, id: "upvote" %>
-            <div id="rank_display"><%= chapter.evaluate_rank %></div>
-            <%= link_to image_tag(vote_config[:downvote_image], size: '18'), downvote_chapter_path(chapter), method: vote_config[:downvote_method], remote: true, id: "downvote" %>
+            <%= link_to image_tag(vote_config[:upvote_image], size: '18'), upvote_chapter_path(chapter), method: vote_config[:upvote_method], remote: true, id: 'upvote' %>
+            <div id='rank_display'><%= chapter.evaluate_rank %></div>
+            <%= link_to image_tag(vote_config[:downvote_image], size: '18'), downvote_chapter_path(chapter), method: vote_config[:downvote_method], remote: true, id: 'downvote' %>
           </li>
         </ul>
       <% end %>
     </div>
-    <div class="small-11 columns">
+    <div class='small-11 columns'>
       <em><%= chapter.choice %></em><small> Posted <%= time_ago_in_words(chapter.created_at) %> ago by <%= chapter.user.name%>.</small>
       <p>
         <% if @home %>

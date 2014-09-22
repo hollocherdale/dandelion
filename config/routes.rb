@@ -12,9 +12,10 @@ Dandelion::Application.routes.draw do
 
   resources :uploads, :only => [:create, :destroy]
   resources :books
+  resources :users, :only => [:index, :show, :destroy, :update, :edit]
 
-  root 'books#home'
-  match '/chapters/:id',    to: 'chapters#show',    via: 'get'
   match '/about',           to: 'chapters#about',   via: 'get'
   match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
+
+  root 'books#home'
 end
