@@ -2,6 +2,8 @@ require 'state_machine'
 
 class Book < ActiveRecord::Base
   has_many :chapters, dependent: :destroy
+  belongs_to :users
+  
   has_attached_file :banner,
                     styles: {
                     large:    '1500x400>',
